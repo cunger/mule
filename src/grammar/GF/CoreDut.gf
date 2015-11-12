@@ -1,0 +1,1 @@
+concrete CoreDut of Core = CoreI with (Syntax = SyntaxDut);

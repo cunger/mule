@@ -1,0 +1,8 @@
+*.hi
+*.x
+*.y
+*.o
+*.gfo
+*.bak
+.DS_Store
+.stack-work/*

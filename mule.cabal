@@ -1,0 +1,50 @@
+name:                mule
+version:             0.1.0.0
+synopsis:            Prototype of a multilingual natural logic engine
+description:         Please see README.md
+homepage:            http://github.com/cunger/mule#readme
+license:             GPL
+license-file:        LICENSE
+author:              Christina Unger
+maintainer:          cunger@cit-ec.uni-bielefeld.de
+copyright:           2015 Christina Unger and Jan van Eijck
+build-type:          Simple
+-- extra-source-files:
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src, src/grammar/BNFC
+  exposed-modules:     Pipeline
+                     , Inferences
+                     , ErrM
+                     , AbsTree
+                     , LexTree 
+                     , ParTree
+                     , PrintTree
+  build-depends:       base >= 4.7 && < 5
+                     , gf
+                     , array
+                     , MissingH
+  default-language:    Haskell2010
+
+executable mule-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , mule
+                     , gf
+  default-language:    Haskell2010
+
+test-suite mule-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , mule
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/cunger/mule

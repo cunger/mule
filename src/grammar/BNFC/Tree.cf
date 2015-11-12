@@ -1,0 +1,12 @@
+
+Leaf   . Tree ::= Ident Marking ;
+Branch . Tree ::= Ident Marking "[" [Tree] "]" ;
+
+_      . Tree ::= "(" Tree ")" ;
+
+separator Tree "," ;
+
+
+Plus  . Marking ::= "+" ; 
+Minus . Marking ::= "-" ; 
+None  . Marking ::= "o" ;
