@@ -8,30 +8,69 @@ concrete CoreTree of Core = Cat ** {
 
     lincat
 
-        Entity_NP = Marking => Str;
+        Anaphor_Pron   = Marking => Str;
 
-        Property_CN, Property_AP, Property_VP = Marking => Str;
-        Relation_N2, Relation_A2, Relation_V2 = Marking => Str;
+        Entity_NP      = Marking => Str;
+        [Entity_NP]    = Marking => Str;
 
-        Clause_Cl, Sentence_S = Marking => Str;
-        Text_Str = Str;
+        Predicate_CN   = Marking => Str;
+        Predicate_AP   = Marking => Str;
+        Predicate_VP   = Marking => Str;
+        Predicate_Adv  = Marking => Str;
+
+        Relation_N2    = Marking => Str;
+        Relation_A2    = Marking => Str;
+        Relation_V2    = Marking => Str;
+        Relation_Prep  = Marking => Str;
+
+        Relation'_N2   = Marking => Str;
+        Relation'_A2   = Marking => Str;
+        Relation'_V2   = Marking => Str;
+        Relation'_Prep = Marking => Str;
+
+        Clause_Cl      = Marking => Str;
+        Sentence_S     = Marking => Str;
+        Text_Str       = Str;
 
 
     lin 
 
-        root s = s ! Plus;
+        --------------------
+        ---- Operations ----
+        --------------------
 
 
-        -- Internal and external arguments
+        root_S     s = s   ! Plus;
+        root_NP   np = np  ! Plus;
+        root_VP   vp = vp  ! Plus;
+        root_CN   cn = cn  ! Plus;
+        root_AP   ap = ap  ! Plus;
+        root_Adv adv = adv ! Plus;
 
-        vp v2 np = branch2 "int_v2" v2 np;
-        cn n2 np = branch2 "int_n2" n2 np;
-        ap a2 np = branch2 "int_a2" a2 np;
 
-        cn_vp cn = branch1 "cn_vp" cn;
-        ap_vp ap = branch1 "ap_vp" ap;
+        ---- Application 
 
-        cl np vp = branch2 "cl" np vp;
+        apply_V2    r e1 e2 = branch3 "apply_V2"   r e1 e2;
+        apply_A2    r e1 e2 = branch3 "apply_A2"   r e1 e2;
+        apply_Prep  r e1 e2 = branch3 "apply_Prep" r e1 e2;
+
+        apply'_V2   r e1 e2 = branch3 "apply_V2"   r e2 e1;
+        apply'_A2   r e1 e2 = branch3 "apply_A2"   r e2 e1;
+        apply'_Prep r e1 e2 = branch3 "apply_Prep" r e2 e1;
+
+        apply_N2_def    r e1 e2 = branch3 "apply_N2" r e1 e2;
+        apply_N2_indef  r e1 e2 = branch3 "apply_N2" r e1 e2;
+        apply'_N2_def   r e1 e2 = branch3 "apply_N2" r e2 e1;
+        apply'_N2_indef r e1 e2 = branch3 "apply_N2" r e2 e1;
+
+        apply_VP e p = branch2 "apply_VP" e p;  
+
+        lift_CN  cn  = branch1 "lift_CN"  cn;
+        lift_AP  ap  = branch1 "lift_AP"  ap;
+        lift_Adv adv = branch1 "lift_Adv" adv; 
+
+
+        ---- Polarity and tense
 
         sPosPres cl = branch1 "sPosPres" cl;
         sPosPast cl = branch1 "sPosPast" cl; 
@@ -41,12 +80,10 @@ concrete CoreTree of Core = Cat ** {
         sNegFut  cl = branch1 "sNegFut"  ((switch cl) ! Reverse); 
 
         
-        -- Modifiers
-        
-        adjective ap cn = branch2 "adjective" ap cn;  
+        ---- Modification 
 
-
-        -- Relative clauses
+        modify_AP_CN  mod p = branch2 "modify_AP_CN" mod p;  
+        modify_Adv_VP mod p = branch2 "modify_AP_CN" mod p;  
 
         rClPosPres cn vp = branch2 "rClPosPres" cn vp;
         rClPosPast cn vp = branch2 "rClPosPast" cn vp;
@@ -56,7 +93,7 @@ concrete CoreTree of Core = Cat ** {
         rClNegFut  cn vp = branch2 "rClNegFut"  cn ((switch vp) ! Reverse);
 
 
-        -- Quantifiers
+        ---- Quantification
 
         someSg cn vp = branch2 "someSg" cn vp; 
         somePl cn vp = branch2 "somePl" cn vp; 
@@ -68,23 +105,76 @@ concrete CoreTree of Core = Cat ** {
         most   cn vp = branch2 "most"  ((switch cn) ! Break) vp; 
 
 
+        ---- Coordination 
+
+        BaseEntity_NP e1 e2 = branch2 "BaseEntity_NP" e1 e2; 
+        ConsEntity_NP e1 e2 = branch2 "ConsEntity_NP" e1 e2;  
+        
+        and_NP e = branch1 "and_NP" e;
+        or_NP  e = branch1 "or_NP"  e;
+
+        and_S s1 s2 = branch2 "and_S" s1 s2;
+        or_S  s1 s2 = branch2 "or_S"  s1 s2;
+
+
+        ---- Others
+
+        Exists cn = branch1 "Exists" cn;
+
+
+        ---------------------
+        ---- Expressions ----
+        ---------------------
+
+    
+        ---- Anaphors 
+
+        I     = leaf "i_Pron";
+        We    = leaf "we_Pron";
+        YouSg = leaf "youSg_Pron";
+        YouPl = leaf "youPl_Pron";
+        He    = leaf "he_Pron";
+        She   = leaf "she_Pron";
+        It    = leaf "it_Pron";
+        They  = leaf "they_Pron"; 
+
+        anaphor a   = branch1 "anaphor" a;
+        poss    a p = branch2 "poss" a p; 
+
+
+        ---- Semantically light expressions
+
+        have_Rel    = leaf "have_V2";
+        with_Rel    = leaf "with_Prep";
+        possess_Rel = leaf "possess_Prep";
+        in_Rel      = leaf "in_Prep";
+        from_Rel    = leaf "from_Prep";
+
+
     oper 
 
+        ---------------------------
+        ---- Marking algorithm ----
+        ---------------------------
+
         leaf : Str -> (Marking => Str) = \ s -> 
-        table { Plus  => s ++ "+"; 
-                Minus => s ++ "-"; 
-                None  => s ++ "o" };
+        table { m => s ++ (show m) };
         
         branch1 : Str -> (Marking => Str) -> (Marking => Str) = \ s,t -> 
-        table { Plus  => s ++ "+" ++ "[" ++ t ! Plus  ++ "]"; 
-                Minus => s ++ "-" ++ "[" ++ t ! Minus ++ "]"; 
-                None  => s ++ "o" ++ "[" ++ t ! None  ++ "]" };
+        table { m => s ++ (show m) ++ "[" ++ t ! m  ++ "]" };
 
         branch2 : Str -> (Marking => Str) -> (Marking => Str) -> (Marking => Str) = \ s,t1,t2 -> 
-        table { Plus  => s ++ "+" ++ "[" ++ t1 ! Plus  ++ "," ++ t2 ! Plus  ++ "]"; 
-                Minus => s ++ "-" ++ "[" ++ t1 ! Minus ++ "," ++ t2 ! Minus ++ "]"; 
-                None  => s ++ "o" ++ "[" ++ t1 ! None  ++ "," ++ t2 ! None  ++ "]" };
-        
+        table { m => s ++ (show m) ++ "[" ++ t1 ! m ++ "," ++ t2 ! m ++ "]" };
+
+        branch3 : Str -> (Marking => Str) -> (Marking => Str) -> (Marking => Str) -> (Marking => Str) = \ s,t1,t2,t3 -> 
+        table { m => s ++ (show m) ++ "[" ++ t1 ! m ++ "," ++ t2 ! m ++ "," ++ t3 ! m ++ "]" };
+
+        show : Marking -> Str = \ m -> case m of {
+               Plus  => "+";
+               Minus => "-";
+               None  => "o"
+        }; 
+
         switch : (Marking => Str) -> (Switch => Marking => Str) = \ s ->   
         table { Reverse => table { Plus  => s ! Minus;
                                    Minus => s ! Plus;

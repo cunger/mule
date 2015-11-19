@@ -9,8 +9,8 @@ concrete DomainGer of Domain = SharedGer ** open SyntaxGer, ParadigmsGer in {
         man   = mkCN (mkN "Mann" "Männer" masculine); 
         happy = mkAP (mkA "glücklich");
         smile = mkVP (mkV "lächeln");
-
-        laugh = mkV2 (mkV "lachen");
+        laugh = mkVP (mkV "lachen");
+        
         kiss  = mkV2 (mkV "küssen");
 
 }

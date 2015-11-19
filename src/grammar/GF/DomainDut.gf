@@ -9,8 +9,8 @@ concrete DomainDut of Domain = SharedDut ** open SyntaxDut, ParadigmsDut in {
         man   = mkCN (mkN "man" "mannen" de); 
         happy = mkAP (mkA "gelukkig");
         smile = mkVP (mkV "glimlachen");
+        laugh = mkVP (mkV "lachen");
 
-        laugh = mkV2 (mkV "lachen");
         kiss  = mkV2 (mkV "kussen");
 
 }

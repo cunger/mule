@@ -9,8 +9,8 @@ concrete DomainTree of Domain = SharedTree ** {
         man   = leaf "man"; 
         happy = leaf "happy";
         smile = leaf "smile";
-
         laugh = leaf "laugh";
+        
         kiss  = leaf "kiss";
 
 }

@@ -15,6 +15,7 @@ concrete SharedEng of Shared = CoreEng ** open SyntaxEng, ParadigmsEng in {
 
         -- Factives
 
+        know_that    s = mkVP (mkVS (mkV "know" "knew" "known")) s;
         forget_that  s = mkVP (mkVS (mkV "forget" "forgot" "forgotten")) s;
         pretend_that s = mkVP (mkVS (mkV "pretend")) s;
 

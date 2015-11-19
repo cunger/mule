@@ -15,6 +15,7 @@ concrete SharedDut of Shared = CoreDut ** open SyntaxDut, ParadigmsDut in {
 
         -- Factives
 
+        know_that    s = mkVP (mkVS (mkV "weten" "wist" "geweten")) s;
         forget_that  s = mkVP (mkVS (mkV "vergeten")) s;
         pretend_that s = mkVP (mkVS (mkV "pretenderen")) s; -- TODO doen alsof, voorwenden?
 

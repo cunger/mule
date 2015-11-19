@@ -15,6 +15,7 @@ concrete SharedTree of Shared = CoreTree ** {
 
         -- Factives
 
+        know_that    s = branch1 "know_that" s; 
         forget_that  s = branch1 "forget_that"  ((switch s) ! Reverse); 
         pretend_that s = branch1 "pretend_that" ((switch s) ! Reverse); 
 

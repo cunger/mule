@@ -23,14 +23,11 @@ stack ghci
 English:
 
 ```
-Loading grammar...
-Ready.
-
 some happy man refused to smile
 =
-sPosPast + [ someSg + [ adjective + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ someSg + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  someSg - [  adjective - [  happy -  , man -  ]  , smile -  ]  ]
+sNegPast + [  someSg - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
 sPosPast + [  someSg + [  man +  , refuse_to + [  smile -  ]  ]  ]
 sNegPast + [  someSg - [  man -  , smile -  ]  ]
 =
@@ -42,14 +39,11 @@ some man didn't smile
 Dutch: 
 
 ```
-Loading grammar...
-Ready.
-
 een gelukkige man weigerde te glimlachen
 =
-sPosPast + [ an + [ adjective + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ an + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  an - [  adjective - [  happy -  , man -  ]  , smile -  ]  ]
+sNegPast + [  an - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
 sPosPast + [  an + [  man +  , refuse_to + [  smile -  ]  ]  ]
 sNegPast + [  an - [  man -  , smile -  ]  ]
 =
@@ -61,14 +55,11 @@ een man glimlachte niet
 German:
 
 ```
-Loading grammar...
-Ready.
-
 ein glücklicher Mann weigerte sich zu lächeln
 =
-sPosPast + [ an + [ adjective + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ an + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  an - [  adjective - [  happy -  , man -  ]  , smile -  ]  ]
+sNegPast + [  an - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
 sPosPast + [  an + [  man +  , refuse_to + [  smile -  ]  ]  ]
 sNegPast + [  an - [  man -  , smile -  ]  ]
 =

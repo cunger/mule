@@ -7,11 +7,11 @@ abstract Domain = Shared ** {
 
         Ann, Ed : Entity_NP;
 
-        man   : Property_CN; 
-        happy : Property_AP;
-        smile : Property_VP;
-
-        laugh : Relation_V2;
+        man   : Predicate_CN; 
+        happy : Predicate_AP;
+        smile : Predicate_VP;
+        laugh : Predicate_VP;
+        
         kiss  : Relation_V2;
 
 }

@@ -15,6 +15,7 @@ concrete SharedGer of Shared = CoreGer ** open SyntaxGer, ParadigmsGer in {
 
         -- Factives
 
+        know_that    s = mkVP (mkVS (mkV "wissen" "weiß" "wusste" "wisse" "gewusst")) s;
         forget_that  s = mkVP (mkVS (mkV "vergessen" "vergisst" "vergaß" "vergäße" "vergessen")) s;
         pretend_that s = mkVP (mkVS (mkV "vor" (mkV "geben" "gibt" "gab" "gäbe" "gegeben"))) s; -- TODO so tun als ob
 

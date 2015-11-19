@@ -43,6 +43,10 @@ rules :: [Rule]
 rules =  [implicatives,adjectiveUp]
 
 
+-- TODO 
+-- NP conjunction (X conj Y ...) -> (X ... conj Y ...) 
+
+
 implicatives :: Rule 
 -- manage to 
 implicatives (Branch (Ident "manage_to") _ [vp]) = [vp]
@@ -50,23 +54,27 @@ implicatives (Branch (Ident "manage_to") _ [vp]) = [vp]
 implicatives (Branch (Ident s) m [ Branch i m' [ np, Branch (Ident "forget_to") _ [vp]]]) =
             [ Branch (Ident (revertPolarity s)) m [ Branch i (switch m') [ switchInTree np, vp ]] ]
 -- force to 
-implicatives (Branch i m [ Branch i' Plus [ _ , Branch (Ident "force_to") _ [np,vp]]]) =
+implicatives (Branch i m [ _ , Branch (Ident "force_to") _ [np,vp]]) =
             [ Branch i m [ Branch (Ident "cl") Plus [ np, vp ]] ]
 -- refuse to 
 implicatives (Branch (Ident s) m [ Branch i' Plus [ np, Branch (Ident "refuse_to") _ [vp]]]) =
             [ Branch (Ident (revertPolarity s)) m [ Branch i' Minus [ switchInTree np, vp ]] ]
 -- attempt to 
-implicatives (Branch i m [ Branch i' Minus [ np, Branch (Ident "attempt_to") _ [vp]]]) =
-            [ Branch i m [ Branch i' Minus [ np, vp ]] ]
+implicatives (Branch i Minus [ np, Branch (Ident "attempt_to") _ [vp]]) =
+            [ Branch i Minus [ np, vp ] ]
 -- hesitate to 
 implicatives (Branch (Ident s) m [ Branch i' Minus [ np, Branch (Ident "hesitate_to") _ [vp]]]) =
             [ Branch (Ident (revertPolarity s)) m [ Branch i' Plus [ switchInTree np, switchInTree vp ]] ]
 -- and that's it
 implicatives _ = []
 
+factives :: Rule 
+-- know_that
+factives (Branch (Ident "know_that") _ [vp]) = [vp]
+
 -- (CN- (A- ...) (CN- ...)) => (CN- ...)
 adjectiveUp :: Rule 
-adjectiveUp (Branch (Ident "adjective") Plus [ Leaf (Ident adj) m, cn ]) = [cn]
+adjectiveUp (Branch (Ident "modify_AP_CN") Plus [ Leaf (Ident adj) m, cn ]) = [cn]
 adjectiveUp _ = []
 
 ---- (CN+ ...) => (CN+ (A+ ...) (CN+ ...))

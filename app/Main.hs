@@ -19,6 +19,7 @@ main = do
 
 loop :: PGF -> Language -> IO ()
 loop pgf l = do 
+               putStrLn ""
                str <- getLine
                case str of 
                     "q" -> exitSuccess

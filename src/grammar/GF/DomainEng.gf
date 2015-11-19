@@ -9,8 +9,8 @@ concrete DomainEng of Domain = SharedEng ** open SyntaxEng, ParadigmsEng in {
         man   = mkCN (mkN "man" "men"); 
         happy = mkAP (mkA "happy");
         smile = mkVP (mkV "smile");
+        laugh = mkVP (mkV "laugh");
 
-        laugh = mkV2 (mkV "laugh");
         kiss  = mkV2 (mkV "kiss");
 
 }
