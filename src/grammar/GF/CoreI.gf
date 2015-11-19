@@ -1,9 +1,6 @@
 incomplete concrete CoreI of Core = open Syntax in {
 	
 
-    param Direction = Default | Swap ;
-
-
     lincat 
 
         Anaphor_Pron   = Pron;
@@ -16,10 +13,16 @@ incomplete concrete CoreI of Core = open Syntax in {
         Predicate_VP   = VP;
         Predicate_Adv  = Adv;
 
+        Predicate'_CN  = CN;
+        Predicate'_AP  = AP; 
+        Predicate'_VP  = VP;
+        Predicate'_Adv = Adv;
+
         Relation_N2    = N2; 
         Relation_A2    = A2; 
         Relation_V2    = V2; 
         Relation_Prep  = Prep;
+
         Relation'_N2   = N2; 
         Relation'_A2   = A2; 
         Relation'_V2   = V2; 
@@ -47,24 +50,33 @@ incomplete concrete CoreI of Core = open Syntax in {
 
         ---- Application 
 
-        apply_V2    r e1 e2 = mkCl e1 r e2;
-        apply_A2    r e1 e2 = mkCl e1 r e2;
-        apply_Prep  r e1 e2 = mkCl e1 (mkVP (mkAdv r e2));
+        -- linear
 
-        apply'_V2   r e1 e2 = mkCl e2 r e1;
-        apply'_A2   r e1 e2 = mkCl e2 r e1;
-        apply'_Prep r e1 e2 = mkCl e2 (mkVP (mkAdv r e1));
+        apply_V2    r e = mkVP  r e;
+        apply_N2    r e = mkCN  r e;
+        apply_A2    r e = mkAP  r e;
+        apply_Prep  r e = mkAdv r e;
 
-        apply_N2_def    r e1 e2 = mkCl e1 (mkNP a_Det   (mkCN r e2)); 
-        apply_N2_indef  r e1 e2 = mkCl e1 (mkNP the_Det (mkCN r e2)); 
-        apply'_N2_def   r e1 e2 = mkCl e2 (mkNP a_Det   (mkCN r e1)); 
-        apply'_N2_indef r e1 e2 = mkCl e2 (mkNP the_Det (mkCN r e1)); 
+        apply_VP    e p = mkCl e p; 
 
-        apply_VP e p = mkCl e p;  
+        lift_CN_d p = mkVP (mkNP the_Det p); 
+        lift_CN_i p = mkVP (mkNP a_Det p); 
+        lift_AP   p = mkVP p; 
+        lift_Adv  p = mkVP p;
 
-        lift_CN  cn  = mkVP cn;
-        lift_AP  ap  = mkVP ap;
-        lift_Adv adv = mkVP adv; 
+        -- reverse
+
+        apply'_V2   r e = mkVP  r e;
+        apply'_N2   r e = mkCN  r e;
+        apply'_A2   r e = mkAP  r e;
+        apply'_Prep r e = mkAdv r e;
+
+        apply'_VP   e p = mkCl e p; 
+
+        lift'_CN_d p = mkVP (mkNP the_Det p); 
+        lift'_CN_i p = mkVP (mkNP a_Det p); 
+        lift'_AP   p = mkVP p; 
+        lift'_Adv  p = mkVP p;
 
 
         ---- Polarity and tense

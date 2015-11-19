@@ -13,6 +13,11 @@ abstract Core = {
         Predicate_VP;
         Predicate_Adv;
 
+        Predicate'_CN;
+        Predicate'_AP; 
+        Predicate'_VP;
+        Predicate'_Adv;
+
         Relation_N2;
         Relation_A2;
         Relation_V2;
@@ -46,25 +51,35 @@ abstract Core = {
 
         ---- Application 
        
-        apply_V2        : Relation_V2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply_N2_def    : Relation_N2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply_N2_indef  : Relation_N2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply_A2        : Relation_A2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply_Prep      : Relation_Prep -> Entity_NP -> Entity_NP -> Clause_Cl;
+        -- linear
 
-        apply'_V2       : Relation'_V2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply'_N2_def   : Relation'_N2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply'_N2_indef : Relation'_N2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply'_A2       : Relation'_A2   -> Entity_NP -> Entity_NP -> Clause_Cl;
-        apply'_Prep     : Relation'_Prep -> Entity_NP -> Entity_NP -> Clause_Cl;
+        apply_V2    : Relation_V2   -> Entity_NP -> Predicate_VP;
+        apply_N2_   : Relation_N2   -> Entity_NP -> Predicate_CN;
+        apply_A2    : Relation_A2   -> Entity_NP -> Predicate_AP;
+        apply_Prep  : Relation_Prep -> Entity_NP -> Predicate_Adv;
 
-        apply_VP : Entity_NP -> Predicate_VP -> Clause_Cl; 
+        apply_VP    : Entity_NP -> Predicate_VP  -> Clause_Cl; 
 
-        lift_CN  : Predicate_CN  -> Predicate_VP;
-        lift_AP  : Predicate_AP  -> Predicate_VP;
-        lift_Adv : Predicate_Adv -> Predicate_VP;
+        lift_CN_d   : Predicate_CN  -> Predicate_VP;
+        lift_CN_i   : Predicate_CN  -> Predicate_VP;
+        lift_AP     : Predicate_AP  -> Predicate_VP;
+        lift_Adv    : Predicate_Adv -> Predicate_VP; 
 
+        -- reverse
+
+        apply'_V2   : Relation'_V2   -> Entity_NP -> Predicate'_VP;
+        apply'_N2   : Relation'_N2   -> Entity_NP -> Predicate'_CN;
+        apply'_A2   : Relation'_A2   -> Entity_NP -> Predicate'_AP;
+        apply'_Prep : Relation'_Prep -> Entity_NP -> Predicate'_Adv;
+
+        apply'_VP   : Entity_NP -> Predicate'_VP  -> Clause_Cl; 
+
+        lift'_CN_d  : Predicate_CN  -> Predicate_VP;
+        lift'_CN_i  : Predicate_CN  -> Predicate_VP;
+        lift'_AP    : Predicate_AP  -> Predicate_VP;
+        lift'_Adv   : Predicate_Adv -> Predicate_VP; 
         
+
         ---- Polarity and tense
 
         sPosPres : Clause_Cl -> Sentence_S;
