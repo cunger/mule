@@ -18,20 +18,10 @@ concrete CoreTree of Core = Cat ** {
         Predicate_VP   = Marking => Str;
         Predicate_Adv  = Marking => Str;
 
-        Predicate'_CN  = Marking => Str;
-        Predicate'_AP  = Marking => Str;
-        Predicate'_VP  = Marking => Str;
-        Predicate'_Adv = Marking => Str;
-
         Relation_N2    = Marking => Str;
         Relation_A2    = Marking => Str;
         Relation_V2    = Marking => Str;
         Relation_Prep  = Marking => Str;
-
-        Relation'_N2   = Marking => Str;
-        Relation'_A2   = Marking => Str;
-        Relation'_V2   = Marking => Str;
-        Relation'_Prep = Marking => Str;
 
         Clause_Cl      = Marking => Str;
         Sentence_S     = Marking => Str;
@@ -55,8 +45,6 @@ concrete CoreTree of Core = Cat ** {
 
         ---- Application 
 
-        -- linear
-
         apply_V2    r e = branch2 "apply_V2"   r e;
         apply_N2    r e = branch2 "apply_N2"   r e;
         apply_A2    r e = branch2 "apply_A2"   r e;
@@ -68,20 +56,6 @@ concrete CoreTree of Core = Cat ** {
         lift_CN_i p = branch1 "lift_CN_i" p;
         lift_AP   p = branch1 "lift_AP"   p;
         lift_Adv  p = branch1 "lift_Adv"  p;
-
-        -- reverse
-
-        apply'_V2   r e = branch2 "apply'_V2"   r e;
-        apply'_N2   r e = branch2 "apply'_N2"   r e;
-        apply'_A2   r e = branch2 "apply'_A2"   r e;
-        apply'_Prep r e = branch2 "apply'_Prep" r e;
-
-        apply'_VP   e p = branch2 "apply_VP" e p; 
-
-        lift'_CN_d p = branch1 "lift'_CN_d" p; 
-        lift'_CN_i p = branch1 "lift'_CN_i" p; 
-        lift'_AP   p = branch1 "lift'_AP"   p; 
-        lift'_Adv  p = branch1 "lift'_Adv"  p;
 
 
         ---- Polarity and tense

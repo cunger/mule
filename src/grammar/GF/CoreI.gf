@@ -13,20 +13,10 @@ incomplete concrete CoreI of Core = open Syntax in {
         Predicate_VP   = VP;
         Predicate_Adv  = Adv;
 
-        Predicate'_CN  = CN;
-        Predicate'_AP  = AP; 
-        Predicate'_VP  = VP;
-        Predicate'_Adv = Adv;
-
         Relation_N2    = N2; 
         Relation_A2    = A2; 
         Relation_V2    = V2; 
         Relation_Prep  = Prep;
-
-        Relation'_N2   = N2; 
-        Relation'_A2   = A2; 
-        Relation'_V2   = V2; 
-        Relation'_Prep = Prep;
 
         Clause_Cl      = Cl;
         Sentence_S     = S;
@@ -50,8 +40,6 @@ incomplete concrete CoreI of Core = open Syntax in {
 
         ---- Application 
 
-        -- linear
-
         apply_V2    r e = mkVP  r e;
         apply_N2    r e = mkCN  r e;
         apply_A2    r e = mkAP  r e;
@@ -63,20 +51,6 @@ incomplete concrete CoreI of Core = open Syntax in {
         lift_CN_i p = mkVP (mkNP a_Det p); 
         lift_AP   p = mkVP p; 
         lift_Adv  p = mkVP p;
-
-        -- reverse
-
-        apply'_V2   r e = mkVP  r e;
-        apply'_N2   r e = mkCN  r e;
-        apply'_A2   r e = mkAP  r e;
-        apply'_Prep r e = mkAdv r e;
-
-        apply'_VP   e p = mkCl e p; 
-
-        lift'_CN_d p = mkVP (mkNP the_Det p); 
-        lift'_CN_i p = mkVP (mkNP a_Det p); 
-        lift'_AP   p = mkVP p; 
-        lift'_Adv  p = mkVP p;
 
 
         ---- Polarity and tense
