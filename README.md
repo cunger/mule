@@ -25,14 +25,14 @@ English:
 ```
 some happy man refused to smile
 =
-sPosPast + [ someSg + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ quant + [ someSg + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  someSg - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
-sPosPast + [  someSg + [  man +  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  someSg - [  man -  , smile -  ]  ]
+sPosPast + [  quant + [  someSg + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
+sNegPast + [  quant - [  someSg - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
+sNegPast + [  quant - [  someSg - [  man -  ]  , smile -  ]  ]
 =
-some happy man didn't smile
 some man refused to smile
+some happy man didn't smile
 some man didn't smile
 ```
 
@@ -41,14 +41,14 @@ Dutch:
 ```
 een gelukkige man weigerde te glimlachen
 =
-sPosPast + [ an + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ quant + [ an + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  an - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
-sPosPast + [  an + [  man +  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  an - [  man -  , smile -  ]  ]
+sPosPast + [  quant + [  an + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
+sNegPast + [  quant - [  an - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
+sNegPast + [  quant - [  an - [  man -  ]  , smile -  ]  ]
 =
-een gelukkige man glimlachte niet
 een man weigerde te glimlachen
+een gelukkige man glimlachte niet
 een man glimlachte niet
 ```
 
@@ -57,13 +57,13 @@ German:
 ```
 ein glücklicher Mann weigerte sich zu lächeln
 =
-sPosPast + [ an + [ modify_AP_CN + [ happy + , man + ] , refuse_to + [ smile - ] ] ]
+sPosPast + [ quant + [ an + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
 -->
-sNegPast + [  an - [  modify_AP_CN - [  happy -  , man -  ]  , smile -  ]  ]
-sPosPast + [  an + [  man +  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  an - [  man -  , smile -  ]  ]
+sPosPast + [  quant + [  an + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
+sNegPast + [  quant - [  an - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
+sNegPast + [  quant - [  an - [  man -  ]  , smile -  ]  ]
 =
-ein glücklicher Mann lächelte nicht
 ein Mann weigerte sich zu lächeln
+ein glücklicher Mann lächelte nicht
 ein Mann lächelte nicht
 ```
