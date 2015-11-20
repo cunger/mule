@@ -1,4 +1,4 @@
-concrete DomainDut of Domain = SharedDut ** open SyntaxDut, ParadigmsDut in {
+concrete ExampleDut of Example = CoreDut ** open SyntaxDut, ParadigmsDut in {
 
 
     lin 

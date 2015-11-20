@@ -1,0 +1,1 @@
+concrete QAEng of QA = CoreEng ** QAI with (Syntax = SyntaxEng);

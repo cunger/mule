@@ -1,4 +1,4 @@
-concrete DomainTree of Domain = SharedTree ** {
+concrete ExampleTree of Example = CoreTree ** {
 
 
     lin 

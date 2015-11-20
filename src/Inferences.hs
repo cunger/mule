@@ -55,7 +55,7 @@ implicatives (Branch (Ident s) m [ Branch i m' [ np, Branch (Ident "forget_to") 
             [ Branch (Ident (revertPolarity s)) m [ Branch i (switch m') [ switchInTree np, vp ]] ]
 -- force to 
 implicatives (Branch i m [ _ , Branch (Ident "force_to") _ [np,vp]]) =
-            [ Branch i m [ Branch (Ident "cl") Plus [ np, vp ]] ]
+            [ Branch (Ident "apply_VP") m [ np, vp ] ]
 -- refuse to 
 implicatives (Branch (Ident s) m [ Branch i' Plus [ np, Branch (Ident "refuse_to") _ [vp]]]) =
             [ Branch (Ident (revertPolarity s)) m [ Branch i' Minus [ switchInTree np, vp ]] ]

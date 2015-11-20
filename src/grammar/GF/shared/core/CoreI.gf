@@ -51,6 +51,7 @@ incomplete concrete CoreI of Core = open Syntax in {
         lift_CN_i p = mkVP (mkNP a_Det p); 
         lift_AP   p = mkVP p; 
         lift_Adv  p = mkVP p;
+        lift_NP   e = mkVP e;
 
 
         ---- Polarity and tense

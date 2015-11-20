@@ -1,4 +1,4 @@
 module Config where 
 
-grammar  = "src/grammar/target/Domain.pgf"
-language = "DomainTree"
+grammar  = "src/grammar/target/Application.pgf"
+language = "ApplicationTree"

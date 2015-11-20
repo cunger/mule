@@ -1,4 +1,4 @@
-abstract Shared = Core ** {
+abstract ScopalVerbs = Core ** {
 
     fun 
 

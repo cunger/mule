@@ -1,4 +1,4 @@
-concrete DomainEng of Domain = SharedEng ** open SyntaxEng, ParadigmsEng in {
+concrete ExampleEng of Example = CoreEng ** open SyntaxEng, ParadigmsEng in {
 
 
     lin 

@@ -1,4 +1,4 @@
-concrete SharedTree of Shared = CoreTree ** {
+concrete ScopalVerbsTree of ScopalVerbs = CoreTree ** {
 
     lin 
 

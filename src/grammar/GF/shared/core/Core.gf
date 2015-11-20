@@ -41,17 +41,18 @@ abstract Core = {
 
         ---- Application 
        
-        apply_V2    : Relation_V2   -> Entity_NP -> Predicate_VP;
-        apply_N2_   : Relation_N2   -> Entity_NP -> Predicate_CN;
-        apply_A2    : Relation_A2   -> Entity_NP -> Predicate_AP;
-        apply_Prep  : Relation_Prep -> Entity_NP -> Predicate_Adv;
+        apply_V2   : Relation_V2   -> Entity_NP -> Predicate_VP;
+        apply_N2   : Relation_N2   -> Entity_NP -> Predicate_CN;
+        apply_A2   : Relation_A2   -> Entity_NP -> Predicate_AP;
+        apply_Prep : Relation_Prep -> Entity_NP -> Predicate_Adv;
 
-        apply_VP    : Entity_NP -> Predicate_VP  -> Clause_Cl; 
+        apply_VP   : Entity_NP -> Predicate_VP  -> Clause_Cl; 
 
-        lift_CN_d   : Predicate_CN  -> Predicate_VP;
-        lift_CN_i   : Predicate_CN  -> Predicate_VP;
-        lift_AP     : Predicate_AP  -> Predicate_VP;
-        lift_Adv    : Predicate_Adv -> Predicate_VP; 
+        lift_CN_d  : Predicate_CN  -> Predicate_VP;
+        lift_CN_i  : Predicate_CN  -> Predicate_VP;
+        lift_AP    : Predicate_AP  -> Predicate_VP;
+        lift_Adv   : Predicate_Adv -> Predicate_VP; 
+        lift_NP    : Entity_NP     -> Predicate_VP;
 
 
         ---- Polarity and tense

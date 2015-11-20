@@ -1,0 +1,1 @@
+concrete QAGer of QA = CoreGer ** QAI with (Syntax = SyntaxGer);

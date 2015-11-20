@@ -1,4 +1,4 @@
-concrete DomainGer of Domain = SharedGer ** open SyntaxGer, ParadigmsGer in {
+concrete ExampleGer of Example = CoreGer ** open SyntaxGer, ParadigmsGer in {
 
 
     lin 

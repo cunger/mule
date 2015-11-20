@@ -1,4 +1,4 @@
-concrete CoreTree of Core = Cat ** {
+concrete CoreTree of Core = {
 
     param 
 
@@ -56,6 +56,7 @@ concrete CoreTree of Core = Cat ** {
         lift_CN_i p = branch1 "lift_CN_i" p;
         lift_AP   p = branch1 "lift_AP"   p;
         lift_Adv  p = branch1 "lift_Adv"  p;
+        lift_NP   e = branch1 "lift_NP"   e;
 
 
         ---- Polarity and tense
@@ -83,14 +84,14 @@ concrete CoreTree of Core = Cat ** {
 
         ---- Quantification
 
-        someSg cn vp = branch2 "someSg" cn vp; 
-        somePl cn vp = branch2 "somePl" cn vp; 
-        an     cn vp = branch2 "an"     cn vp; 
-        no     cn vp = branch2 "no"    ((switch cn) ! Reverse) ((switch vp) ! Reverse); 
-        every  cn vp = branch2 "every" ((switch cn) ! Reverse) vp;
-        all    cn vp = branch2 "all"   ((switch cn) ! Reverse) vp; 
-        the    cn vp = branch2 "the"   ((switch cn) ! Break) vp; 
-        most   cn vp = branch2 "most"  ((switch cn) ! Break) vp; 
+        someSg cn vp = branch2 "quant" (branch1 "someSg" cn) vp; 
+        somePl cn vp = branch2 "quant" (branch1 "somePl" cn) vp; 
+        an     cn vp = branch2 "quant" (branch1 "an"     cn) vp; 
+        no     cn vp = branch2 "quant" (branch1 "no"    ((switch cn) ! Reverse)) ((switch vp) ! Reverse); 
+        every  cn vp = branch2 "quant" (branch1 "every" ((switch cn) ! Reverse)) vp;
+        all    cn vp = branch2 "quant" (branch1 "all"   ((switch cn) ! Reverse)) vp; 
+        the    cn vp = branch2 "quant" (branch1 "the"   ((switch cn) ! Break)) vp; 
+        most   cn vp = branch2 "quant" (branch1 "most"  ((switch cn) ! Break)) vp; 
 
 
         ---- Coordination 

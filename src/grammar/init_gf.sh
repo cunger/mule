@@ -1,5 +1,3 @@
-#!/bin/bash
-
 cd GF
-gf -make DomainTree.gf DomainEng.gf DomainDut.gf DomainGer.gf
-mv *.pgf ../target/
+gf -make -path=shared/core:shared/lexical:shared/extra:shared/chunk:domain/example:task ApplicationTree.gf ApplicationEng.gf ApplicationDut.gf ApplicationGer.gf
+mv Application.pgf ../target/

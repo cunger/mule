@@ -1,4 +1,4 @@
-concrete SharedDut of Shared = CoreDut ** open SyntaxDut, ParadigmsDut in {
+concrete ScopalVerbsDut of ScopalVerbs = CoreDut ** open SyntaxDut, ParadigmsDut in {
 
 
     lin 

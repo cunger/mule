@@ -1,4 +1,4 @@
-concrete SharedGer of Shared = CoreGer ** open SyntaxGer, ParadigmsGer in {
+concrete ScopalVerbsGer of ScopalVerbs = CoreGer ** open SyntaxGer, ParadigmsGer in {
 
 
     lin 

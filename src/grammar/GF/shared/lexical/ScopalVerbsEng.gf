@@ -1,4 +1,4 @@
-concrete SharedEng of Shared = CoreEng ** open SyntaxEng, ParadigmsEng in {
+concrete ScopalVerbsEng of ScopalVerbs = CoreEng ** open SyntaxEng, ParadigmsEng in {
 
 
     lin 

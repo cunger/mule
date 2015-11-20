@@ -1,1 +1,0 @@
-concrete CoreEng of Core = CoreI with (Syntax = SyntaxEng);

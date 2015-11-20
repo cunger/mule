@@ -1,4 +1,4 @@
-abstract Domain = Shared ** {
+abstract Example = Core ** {
 
     flags startcat = Text_Str;
 
