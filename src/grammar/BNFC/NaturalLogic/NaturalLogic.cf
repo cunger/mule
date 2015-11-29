@@ -1,0 +1,12 @@
+
+Leaf   . Expression ::= Ident Marking ;
+Branch . Expression ::= Ident Marking "[" [Expression] "]" ;
+
+_      . Expression ::= "(" Expression ")" ;
+
+separator Expression "," ;
+
+
+Plus  . Marking ::= "+" ;
+Minus . Marking ::= "-" ;
+None  . Marking ::= "o" ;

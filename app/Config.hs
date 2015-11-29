@@ -1,4 +1,9 @@
-module Config where 
+module Config where
 
-grammar  = "src/grammar/target/Application.pgf"
-language = "ApplicationTree"
+
+-- GF
+
+grammar = "src/grammar/target/Application.pgf"
+
+lNaturalLogic   = "ApplicationTree"
+lPredicateLogic = "ApplicationPL"

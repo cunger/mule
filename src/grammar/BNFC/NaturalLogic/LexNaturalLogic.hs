@@ -1,9 +1,9 @@
 {-# LANGUAGE CPP,MagicHash #-}
-{-# LINE 3 "LexTree.x" #-}
+{-# LINE 3 "LexNaturalLogic.x" #-}
 
 {-# OPTIONS -fno-warn-incomplete-patterns #-}
 {-# OPTIONS_GHC -w #-}
-module LexTree where
+module LexNaturalLogic where
 
 
 
@@ -41,7 +41,7 @@ alex_deflt :: AlexAddr
 alex_deflt = AlexA# "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff"#
 
 alex_accept = listArray (0::Int,4) [AlexAccNone,AlexAccNone,AlexAccSkip,AlexAcc (alex_action_1),AlexAcc (alex_action_2)]
-{-# LINE 36 "LexTree.x" #-}
+{-# LINE 36 "LexNaturalLogic.x" #-}
 
 
 tok :: (Posn -> String -> Token) -> (Posn -> String -> Token)

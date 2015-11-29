@@ -6,11 +6,11 @@ import System.IO ( stdin, hGetContents )
 import System.Environment ( getArgs, getProgName )
 import System.Exit ( exitFailure, exitSuccess )
 
-import LexTree
-import ParTree
-import SkelTree
-import PrintTree
-import AbsTree
+import LexNaturalLogic
+import ParNaturalLogic
+import SkelNaturalLogic
+import PrintNaturalLogic
+import AbsNaturalLogic
 
 
 
@@ -64,9 +64,9 @@ main = do
   args <- getArgs
   case args of
     ["--help"] -> usage
-    [] -> hGetContents stdin >>= run 2 pTree
-    "-s":fs -> mapM_ (runFile 0 pTree) fs
-    fs -> mapM_ (runFile 2 pTree) fs
+    [] -> hGetContents stdin >>= run 2 pExpression
+    "-s":fs -> mapM_ (runFile 0 pExpression) fs
+    fs -> mapM_ (runFile 2 pExpression) fs
 
 
 

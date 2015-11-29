@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -w #-}
 {-# OPTIONS -fglasgow-exts -cpp #-}
 {-# OPTIONS_GHC -fno-warn-incomplete-patterns -fno-warn-overlapping-patterns #-}
-module ParTree where
-import AbsTree
-import LexTree
+module ParNaturalLogic where
+import AbsNaturalLogic
+import LexNaturalLogic
 import ErrM
 import qualified Data.Array as Happy_Data_Array
 import qualified GHC.Exts as Happy_GHC_Exts
@@ -23,16 +23,16 @@ happyIn6 x = Happy_GHC_Exts.unsafeCoerce# x
 happyOut6 :: (HappyAbsSyn ) -> (Ident)
 happyOut6 x = Happy_GHC_Exts.unsafeCoerce# x
 {-# INLINE happyOut6 #-}
-happyIn7 :: (Tree) -> (HappyAbsSyn )
+happyIn7 :: (Expression) -> (HappyAbsSyn )
 happyIn7 x = Happy_GHC_Exts.unsafeCoerce# x
 {-# INLINE happyIn7 #-}
-happyOut7 :: (HappyAbsSyn ) -> (Tree)
+happyOut7 :: (HappyAbsSyn ) -> (Expression)
 happyOut7 x = Happy_GHC_Exts.unsafeCoerce# x
 {-# INLINE happyOut7 #-}
-happyIn8 :: ([Tree]) -> (HappyAbsSyn )
+happyIn8 :: ([Expression]) -> (HappyAbsSyn )
 happyIn8 x = Happy_GHC_Exts.unsafeCoerce# x
 {-# INLINE happyIn8 #-}
-happyOut8 :: (HappyAbsSyn ) -> ([Tree])
+happyOut8 :: (HappyAbsSyn ) -> ([Expression])
 happyOut8 x = Happy_GHC_Exts.unsafeCoerce# x
 {-# INLINE happyOut8 #-}
 happyIn9 :: (Marking) -> (HappyAbsSyn )
@@ -93,7 +93,7 @@ happyReduction_4 happy_x_2
 	 =  case happyOut6 happy_x_1 of { happy_var_1 -> 
 	case happyOut9 happy_x_2 of { happy_var_2 -> 
 	happyIn7
-		 (AbsTree.Leaf happy_var_1 happy_var_2
+		 (AbsNaturalLogic.Leaf happy_var_1 happy_var_2
 	)}}
 
 happyReduce_5 = happyReduce 5# 1# happyReduction_5
@@ -107,7 +107,7 @@ happyReduction_5 (happy_x_5 `HappyStk`
 	case happyOut9 happy_x_2 of { happy_var_2 -> 
 	case happyOut8 happy_x_4 of { happy_var_4 -> 
 	happyIn7
-		 (AbsTree.Branch happy_var_1 happy_var_2 happy_var_4
+		 (AbsNaturalLogic.Branch happy_var_1 happy_var_2 happy_var_4
 	) `HappyStk` happyRest}}}
 
 happyReduce_6 = happySpecReduce_3  1# happyReduction_6
@@ -144,19 +144,19 @@ happyReduction_9 happy_x_3
 happyReduce_10 = happySpecReduce_1  3# happyReduction_10
 happyReduction_10 happy_x_1
 	 =  happyIn9
-		 (AbsTree.Plus
+		 (AbsNaturalLogic.Plus
 	)
 
 happyReduce_11 = happySpecReduce_1  3# happyReduction_11
 happyReduction_11 happy_x_1
 	 =  happyIn9
-		 (AbsTree.Minus
+		 (AbsNaturalLogic.Minus
 	)
 
 happyReduce_12 = happySpecReduce_1  3# happyReduction_12
 happyReduction_12 happy_x_1
 	 =  happyIn9
-		 (AbsTree.None
+		 (AbsNaturalLogic.None
 	)
 
 happyNewToken action sts stk [] =
@@ -190,10 +190,10 @@ happyReturn1 = \a tks -> (returnM) a
 happyError' :: () => [(Token)] -> Err a
 happyError' = happyError
 
-pTree tks = happySomeParser where
+pExpression tks = happySomeParser where
   happySomeParser = happyThen (happyParse 0# tks) (\x -> happyReturn (happyOut7 x))
 
-pListTree tks = happySomeParser where
+pListExpression tks = happySomeParser where
   happySomeParser = happyThen (happyParse 1# tks) (\x -> happyReturn (happyOut8 x))
 
 pMarking tks = happySomeParser where

@@ -2,6 +2,7 @@ module Main where
 
 import qualified Config
 
+import Translator
 import Pipeline
 
 import PGF
@@ -10,19 +11,18 @@ import System.Exit (exitSuccess,exitFailure)
 
 main :: IO ()
 main = do
-         putStrLn "Loading grammar..." 
-         pgf    <- readPGF Config.grammar
-         case readLanguage Config.language of 
-              Just l  -> do putStrLn "Ready."
-                            loop pgf l
-              Nothing -> exitFailure
+         putStrLn "Loading grammar..."
+         pgf    <- readPGF  Config.grammar
+         case (readLanguage Config.lNaturalLogic, readLanguage Config.lPredicateLogic) of
+              (Just l_nl, Just l_pl) -> do putStrLn "Ready."
+                                           loop (Grammar pgf l_nl l_pl)
+              _ -> exitFailure
 
-loop :: PGF -> Language -> IO ()
-loop pgf l = do 
-               putStrLn ""
-               str <- getLine
-               case str of 
-                    "q" -> exitSuccess
-                    _   -> do 
-                             mapM putStrLn $ process pgf l str
-                             loop pgf l
+loop :: Grammar -> IO ()
+loop g = do putStrLn ""
+            putStr "> "
+            str <- getLine
+            case str of
+                 "q" -> exitSuccess
+                 _   -> do mapM putStrLn $ map (prettyPrint g) (process g str)
+                           loop g

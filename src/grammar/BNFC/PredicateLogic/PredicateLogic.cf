@@ -1,0 +1,25 @@
+
+Term          . Expression ::= Ident ;
+Predication   . Expression ::= Ident "(" [Expression] ")" ;
+
+Conjunction   . Expression ::= "(" Expression "and" Expression ")" ;
+Disjunction   . Expression ::= "(" Expression "or"  Expression ")" ;
+Negation      . Expression ::= "not" Expression ;
+
+Abstraction   . Expression ::= "lambda" Ident Expression ;
+Application   . Expression ::= "(" Expression "@" Expression ")" ;
+
+Quantification . Expression ::= Quantifier Ident "[" Expression "]" "[" Expression "]" ;
+
+Exists . Quantifier ::= "exists" ;
+Forall . Quantifier ::= "forall" ;
+Most   . Quantifier ::= "most" ;
+The    . Quantifier ::= "the" ;
+
+
+Parameter . Expression ::= Equation ":" Expression;
+Equals    . Equation   ::= Ident "=" Ident;
+
+
+separator Ident "," ;
+separator nonempty Expression "," ;

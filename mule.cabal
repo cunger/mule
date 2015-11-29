@@ -13,14 +13,22 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  hs-source-dirs:      src, src/grammar/BNFC
+  hs-source-dirs:      src
+                     , src/grammar/BNFC/NaturalLogic
+                     , src/grammar/BNFC/PredicateLogic
   exposed-modules:     Pipeline
-                     , Inferences
+                     , Translator
+                     , Lambda
+                     , InferenceEngine
                      , ErrM
-                     , AbsTree
-                     , LexTree 
-                     , ParTree
-                     , PrintTree
+                     , AbsNaturalLogic
+                     , LexNaturalLogic
+                     , ParNaturalLogic
+                     , PrintNaturalLogic
+                     , AbsPredicateLogic
+                     , LexPredicateLogic
+                     , ParPredicateLogic
+                     , PrintPredicateLogic
   build-depends:       base >= 4.7 && < 5
                      , gf
                      , array
