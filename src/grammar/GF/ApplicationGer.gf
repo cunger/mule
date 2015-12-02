@@ -1,19 +1,18 @@
-concrete ApplicationGer of Application = 
+concrete ApplicationGer of Application =
 
                 -- Core extensions
 
-                   ScopalVerbsGer 
+                   ScopalVerbsGer
               -- , DateTimeGer
-              -- , ChunkGer
 
-                -- Domains 
+                -- Domains
 
-                 , ExampleGer
-              -- , FlightBookingGer  
+                 , DartsGer
+                 , FlightsGer
 
-                -- Tasks 
- 
-              -- , QAGer
-              -- , ServiceDialogGer
+                -- Tasks
+
+                 , QAGer
+                 , ServiceDialogGer
 
                  ;

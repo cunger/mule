@@ -8,10 +8,10 @@ concrete CoreTree of Core = {
 
     lincat
 
-        Anaphor_Pron   = Marking => Str;
+        Anaphor        = Marking => Str;
 
-        Entity_NP      = Marking => Str;
-        [Entity_NP]    = Marking => Str;
+        NounPhrase     = Marking => Str;
+        [NounPhrase]   = Marking => Str;
 
         Predicate_CN   = Marking => Str;
         Predicate_AP   = Marking => Str;
@@ -23,8 +23,8 @@ concrete CoreTree of Core = {
         Relation_V2    = Marking => Str;
         Relation_Prep  = Marking => Str;
 
-        Clause_Cl      = Marking => Str;
-        Sentence_S     = Marking => Str;
+        Clause         = Marking => Str;
+        Sentence       = Marking => Str;
         Text_Str       = Str;
 
 
@@ -71,8 +71,9 @@ concrete CoreTree of Core = {
 
         ---- Modification
 
-        modify_AP_CN  mod p = branch2 "modify_AP_CN" mod p;
-        modify_Adv_VP mod p = branch2 "modify_AP_CN" mod p;
+        modify_AP_CN  mod p = branch2 "modify_AP_CN"  mod p;
+        modify_Adv_CN mod p = branch2 "modify_Adv_CN" mod p;
+        modify_Adv_VP mod p = branch2 "modify_Adv_VP" mod p;
 
         rClPosPres cn vp = branch2 "rClPosPres" cn vp;
         rClPosPast cn vp = branch2 "rClPosPast" cn vp;
@@ -82,16 +83,22 @@ concrete CoreTree of Core = {
         rClNegFut  cn vp = branch2 "rClNegFut"  cn ((switch vp) ! Reverse);
 
 
-        ---- Quantification
+        ---- Determiners
 
-        someSg cn vp = branch2 "quant" (branch1 "someSg" cn) vp;
-        somePl cn vp = branch2 "quant" (branch1 "somePl" cn) vp;
-        an     cn vp = branch2 "quant" (branch1 "an"     cn) vp;
-        no     cn vp = branch2 "quant" (branch1 "no"    ((switch cn) ! Reverse)) ((switch vp) ! Reverse);
-        every  cn vp = branch2 "quant" (branch1 "every" ((switch cn) ! Reverse)) vp;
-        all    cn vp = branch2 "quant" (branch1 "all"   ((switch cn) ! Reverse)) vp;
-        the    cn vp = branch2 "quant" (branch1 "the"   ((switch cn) ! Break)) vp;
-        most   cn vp = branch2 "quant" (branch1 "most"  ((switch cn) ! Break)) vp;
+        every  cn = branch1 "quant" (branch1 "every" ((switch cn) ! Reverse));
+        all    cn = branch1 "quant" (branch1 "all"   ((switch cn) ! Reverse));
+
+        someSg cn = branch1 "quant" (branch1 "someSg" cn);
+        somePl cn = branch1 "quant" (branch1 "somePl" cn);
+        an     cn = branch1 "quant" (branch1 "an"     cn);
+
+        the    cn = branch1 "quant" (branch1 "the"  ((switch cn) ! Break));
+
+        most   cn = branch1 "quant" (branch1 "most" ((switch cn) ! Break));
+        many   cn = branch1 "quant" (branch1 "many" cn);
+
+        no  cn vp = branch2 "quant" (branch1 "no"  ((switch cn) ! Reverse)) ((switch vp) ! Reverse);
+        few cn vp = branch2 "quant" (branch1 "few" ((switch cn) ! Reverse)) ((switch vp) ! Reverse);
 
 
         ---- Coordination
@@ -104,6 +111,8 @@ concrete CoreTree of Core = {
 
         and_S s1 s2 = branch2 "and_S" s1 s2;
         or_S  s1 s2 = branch2 "or_S"  s1 s2;
+
+        if_then_S s1 s2 = branch2 "if_then_S" ((switch s1) ! Reverse) s2;
 
 
         ---- Others
@@ -128,16 +137,7 @@ concrete CoreTree of Core = {
         They  = leaf "they_Pron";
 
         anaphor a   = branch1 "anaphor" a;
-        poss    a p = branch2 "poss" a p;
-
-
-        ---- Semantically light expressions
-
-        have_Rel    = leaf "have_V2";
-        with_Rel    = leaf "with_Prep";
-        possess_Rel = leaf "possess_Prep";
-        in_Rel      = leaf "in_Prep";
-        from_Rel    = leaf "from_Prep";
+--      poss    a p = branch2 "poss" a p;
 
 
     oper

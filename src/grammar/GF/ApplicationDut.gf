@@ -1,18 +1,17 @@
-concrete ApplicationDut of Application = 
+concrete ApplicationDut of Application =
 
                 -- Core extensions
 
-                   ScopalVerbsDut 
+                   ScopalVerbsDut
               -- , DateTimeDut
-              -- , ChunkDut
 
-                -- Domains 
+                -- Domains
 
-                 , ExampleDut
-              -- , FlightBookingDut  
+                 , DartsDut
+              -- , FlightsDut
 
-                -- Tasks 
- 
+                -- Tasks
+
               -- , QADut
               -- , ServiceDialogDut
 

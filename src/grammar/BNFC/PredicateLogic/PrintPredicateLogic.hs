@@ -91,22 +91,21 @@ instance Print Expression where
     Predication id expressions -> prPrec i 0 (concatD [prt 0 id, doc (showString "("), prt 0 expressions, doc (showString ")")])
     Conjunction expression1 expression2 -> prPrec i 0 (concatD [doc (showString "("), prt 0 expression1, doc (showString "and"), prt 0 expression2, doc (showString ")")])
     Disjunction expression1 expression2 -> prPrec i 0 (concatD [doc (showString "("), prt 0 expression1, doc (showString "or"), prt 0 expression2, doc (showString ")")])
+    Implication expression1 expression2 -> prPrec i 0 (concatD [doc (showString "("), prt 0 expression1, doc (showString "->"), prt 0 expression2, doc (showString ")")])
     Negation expression -> prPrec i 0 (concatD [doc (showString "not"), prt 0 expression])
     Abstraction id expression -> prPrec i 0 (concatD [doc (showString "lambda"), prt 0 id, prt 0 expression])
     Application expression1 expression2 -> prPrec i 0 (concatD [doc (showString "("), prt 0 expression1, doc (showString "@"), prt 0 expression2, doc (showString ")")])
     Quantification quantifier id expression1 expression2 -> prPrec i 0 (concatD [prt 0 quantifier, prt 0 id, doc (showString "["), prt 0 expression1, doc (showString "]"), doc (showString "["), prt 0 expression2, doc (showString "]")])
-    Parameter equation expression -> prPrec i 0 (concatD [prt 0 equation, doc (showString ":"), prt 0 expression])
   prtList _ [x] = (concatD [prt 0 x])
   prtList _ (x:xs) = (concatD [prt 0 x, doc (showString ","), prt 0 xs])
 instance Print Quantifier where
   prt i e = case e of
-    Exists -> prPrec i 0 (concatD [doc (showString "exists")])
-    Forall -> prPrec i 0 (concatD [doc (showString "forall")])
+    Exists -> prPrec i 0 (concatD [doc (showString "some")])
+    Forall -> prPrec i 0 (concatD [doc (showString "all")])
     Most -> prPrec i 0 (concatD [doc (showString "most")])
+    Many -> prPrec i 0 (concatD [doc (showString "many")])
     The -> prPrec i 0 (concatD [doc (showString "the")])
-
-instance Print Equation where
-  prt i e = case e of
-    Equals id1 id2 -> prPrec i 0 (concatD [prt 0 id1, doc (showString "="), prt 0 id2])
+    No -> prPrec i 0 (concatD [doc (showString "no")])
+    Few -> prPrec i 0 (concatD [doc (showString "few")])
 
 

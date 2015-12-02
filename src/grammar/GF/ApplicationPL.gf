@@ -4,16 +4,15 @@ concrete ApplicationPL of Application =
 
                    ScopalVerbsPL
               -- , DateTimePL
-              -- , ChunkPL
 
                 -- Domains
 
-                 , ExamplePL
-              -- , FlightBookingPL
+                 , DartsPL
+                 , FlightsPL
 
                 -- Tasks
 
               -- , QAPL
-              -- , ServiceDialogPL
+                 , ServiceDialogPL
 
                  ;

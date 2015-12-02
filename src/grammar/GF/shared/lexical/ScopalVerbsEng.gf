@@ -1,14 +1,16 @@
 concrete ScopalVerbsEng of ScopalVerbs = CoreEng ** open SyntaxEng, ParadigmsEng in {
 
 
-    lin 
+    lin
 
-        -- Implicatives 
+        -- Implicatives
 
         manage_to    vp = mkVP (mkVV (mkV "manage")) vp;
         forget_to    vp = mkVP (mkVV (mkV "forget" "forgot" "forgotten")) vp;
-        refuse_to    vp = mkVP (mkVV (mkV "refuse")) vp;
         attempt_to   vp = mkVP (mkVV (mkV "attempt")) vp;
+
+        fail_to      vp = mkVP (mkVV (mkV "fail")) vp;
+        refuse_to    vp = mkVP (mkVV (mkV "refuse")) vp;
         hesitate_to  vp = mkVP (mkVV (mkV "hesitate")) vp;
 
         force_to  np vp = mkVP (mkV2V (mkV "force") noPrep to_Prep) np vp;

@@ -13,16 +13,13 @@ data Expression
     | Predication Ident [Expression]
     | Conjunction Expression Expression
     | Disjunction Expression Expression
+    | Implication Expression Expression
     | Negation Expression
     | Abstraction Ident Expression
     | Application Expression Expression
     | Quantification Quantifier Ident Expression Expression
-    | Parameter Equation Expression
   deriving (Eq, Ord, Show, Read)
 
-data Quantifier = Exists | Forall | Most | The
-  deriving (Eq, Ord, Show, Read)
-
-data Equation = Equals Ident Ident
+data Quantifier = Exists | Forall | Most | Many | The | No | Few
   deriving (Eq, Ord, Show, Read)
 

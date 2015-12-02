@@ -1,24 +1,24 @@
 
-Term          . Expression ::= Ident ;
-Predication   . Expression ::= Ident "(" [Expression] ")" ;
+Term           . Expression ::= Ident ;
+Predication    . Expression ::= Ident "(" [Expression] ")" ;
 
-Conjunction   . Expression ::= "(" Expression "and" Expression ")" ;
-Disjunction   . Expression ::= "(" Expression "or"  Expression ")" ;
-Negation      . Expression ::= "not" Expression ;
+Conjunction    . Expression ::= "(" Expression "and" Expression ")" ;
+Disjunction    . Expression ::= "(" Expression "or"  Expression ")" ;
+Implication    . Expression ::= "(" Expression "->"  Expression ")" ;
+Negation       . Expression ::= "not" Expression ;
 
-Abstraction   . Expression ::= "lambda" Ident Expression ;
-Application   . Expression ::= "(" Expression "@" Expression ")" ;
+Abstraction    . Expression ::= "lambda" Ident Expression ;
+Application    . Expression ::= "(" Expression "@" Expression ")" ;
 
 Quantification . Expression ::= Quantifier Ident "[" Expression "]" "[" Expression "]" ;
 
-Exists . Quantifier ::= "exists" ;
-Forall . Quantifier ::= "forall" ;
+Exists . Quantifier ::= "some" ;
+Forall . Quantifier ::= "all" ;
 Most   . Quantifier ::= "most" ;
+Many   . Quantifier ::= "many" ;
 The    . Quantifier ::= "the" ;
-
-
-Parameter . Expression ::= Equation ":" Expression;
-Equals    . Equation   ::= Ident "=" Ident;
+No     . Quantifier ::= "no" ;
+Few    . Quantifier ::= "few" ;
 
 
 separator Ident "," ;

@@ -21,10 +21,10 @@ reduce (Application e1@(Application _ _) e2)
 reduce (Application e1 e2) = Application e1 (reduce e2)
 reduce (Conjunction e1 e2) = Conjunction (reduce e1) (reduce e2)
 reduce (Disjunction e1 e2) = Disjunction (reduce e1) (reduce e2)
+reduce (Implication e1 e2) = Implication (reduce e1) (reduce e2)
 reduce (Negation e)        = Negation (reduce e)
 reduce (Abstraction v e)   = Abstraction v (reduce e)
 reduce (Predication p es)  = Predication p (map reduce es)
-reduce (Parameter p e)     = Parameter p (reduce e)
 reduce (Quantification q v e1 e2) = Quantification q v (reduce e1) (reduce e2)
 reduce e = e
 
@@ -40,9 +40,8 @@ replace v e' (Application fun arg)   = Application (replace v e' fun) (replace v
 replace v e' (Predication pred args) = Predication pred (map (replace v e') args)
 replace v e' (Conjunction e1 e2)     = Conjunction (replace v e' e1) (replace v e' e2)
 replace v e' (Disjunction e1 e2)     = Disjunction (replace v e' e1) (replace v e' e2)
+replace v e' (Implication e1 e2)     = Implication (replace v e' e1) (replace v e' e2)
 replace v e' (Negation e)            = Negation (replace v e' e)
-replace v e' (Parameter p e)         = Parameter p (replace v e' e)
 replace v e' e@(Quantification q (Ident str) e1 e2)
   | str == v  = e
   | otherwise = Quantification q (Ident str) (replace v e' e1) (replace v e' e2)
-replace _ _ e = e

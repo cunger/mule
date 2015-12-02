@@ -1,1 +1,0 @@
-concrete ChunkGer of Chunk = CoreGer ** ChunkI with (Syntax = SyntaxGer);

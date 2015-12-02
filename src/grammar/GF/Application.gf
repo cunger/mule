@@ -1,19 +1,18 @@
-abstract Application = 
+abstract Application =
 
                 -- Core extensions
 
-                   ScopalVerbs 
+                   ScopalVerbs
               -- , DateTime
-              -- , Chunk
 
-                -- Domains 
+                -- Domains
 
-                 , Example
-              -- , FlightBooking  
+                 , Darts
+                 , Flights
 
-                -- Tasks 
- 
-              -- , QA
-              -- , ServiceDialog
+                -- Tasks
+
+                 , QA
+                 , ServiceDialog
 
               ** { flags startcat = Text_Str; }

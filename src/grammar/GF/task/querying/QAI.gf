@@ -2,20 +2,21 @@ incomplete concrete QAI of QA = CoreI ** {
 
 
  lincat
-  
+
     WhPron = IP;
     WhAdv  = IAdv;
 
     Predicate_VPSlash = VPSlash;
     Clause_ClSlash    = ClSlash;
 
-    Question_QCl = QCl;
-    Question_QS  = QS;
+    Question_QCl   = QCl;
+    Question_QS    = QS;
+    Imperative_Imp = Imp;
 
 
- fun 
-    
-    ---- Imperative 
+ lin
+
+    ---- Imperative
 
     prompt vp = (mkUtt (mkImp vp)).s;
 
@@ -32,7 +33,7 @@ incomplete concrete QAI of QA = CoreI ** {
     How   = how_IAdv;
     Why   = why_IAdv;
 
-    WhichSg p = mkIP which_IDet    p; 
+    WhichSg p = mkIP which_IDet    p;
     WhichPl p = mkIP whichPl_IDet  p;
     HowMany p = mkIP how8many_IDet p;
 
@@ -44,24 +45,24 @@ incomplete concrete QAI of QA = CoreI ** {
     query_CN  wh p = mkQCl wh p;
     query_AP  wh p = mkQCl wh p;
     query_Adv wh p = mkQCl wh p;
-    
+
     apply_VPSlash e  vpslash = mkClSlash e vpslash;
-    query_VPSlash wh clslash = mkQS wh clslash;
+    query_VPSlash wh clslash = mkQCl wh clslash;
 
     query_Cl         cl = mkQCl cl;
     query_IAdv_Cl wh cl = mkQCl wh cl;
 
-    qPosPres qcl = mkQS presentTense positivePol qcl; 
-    qPosPast qcl = mkQS presentTense positivePol qcl; 
-    qPosFut  qcl = mkQS presentTense positivePol qcl; 
-    qNegPres qcl = mkQS presentTense positivePol qcl; 
-    qNegPast qcl = mkQS presentTense positivePol qcl; 
-    qNegFut  qcl = mkQS presentTense positivePol qcl; 
+    qPosPres qcl = mkQS presentTense positivePol qcl;
+    qPosPast qcl = mkQS presentTense positivePol qcl;
+    qPosFut  qcl = mkQS presentTense positivePol qcl;
+    qNegPres qcl = mkQS presentTense positivePol qcl;
+    qNegPast qcl = mkQS presentTense positivePol qcl;
+    qNegFut  qcl = mkQS presentTense positivePol qcl;
 
 
     ---- Answers ----
 
-    yes = yes_Utt.s;
-    no  = no_Utt.s;
+    answer_yes = yes_Utt.s;
+    answer_no  = no_Utt.s;
 
 }

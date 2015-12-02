@@ -1,0 +1,30 @@
+win_against:
+  - play_against
+  - win1
+
+lose_against:
+  - play_against
+  - lose1
+
+win2:
+  - win1
+  - participate
+
+lose2:
+  - lose1
+  - participate
+
+Dutch:
+  - European
+
+British:
+  - European
+
+Taylor:
+  - player
+VanGerwen:
+  - player
+VanBarnveld:
+  - player
+Webster:
+  - player

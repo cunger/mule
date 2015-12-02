@@ -1,1 +1,0 @@
-concrete ChunkEng of Chunk = CoreEng ** ChunkI with (Syntax = SyntaxEng);

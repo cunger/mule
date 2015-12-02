@@ -1,19 +1,18 @@
-concrete ApplicationTree of Application = 
+concrete ApplicationTree of Application =
 
                 -- Core extensions
 
-                   ScopalVerbsTree 
+                   ScopalVerbsTree
               -- , DateTimeTree
-              -- , ChunkTree
 
-                -- Domains 
+                -- Domains
 
-                 , ExampleTree
-              -- , FlightBookingTree  
+                 , DartsTree
+                 , FlightsTree
 
-                -- Tasks 
- 
+                -- Tasks
+
               -- , QATree
-              -- , ServiceDialogTree
+                 , ServiceDialogTree
 
                  ;

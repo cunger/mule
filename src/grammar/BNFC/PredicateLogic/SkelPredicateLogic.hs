@@ -18,18 +18,18 @@ transExpression x = case x of
   Predication ident expressions -> failure x
   Conjunction expression1 expression2 -> failure x
   Disjunction expression1 expression2 -> failure x
+  Implication expression1 expression2 -> failure x
   Negation expression -> failure x
   Abstraction ident expression -> failure x
   Application expression1 expression2 -> failure x
   Quantification quantifier ident expression1 expression2 -> failure x
-  Parameter equation expression -> failure x
 transQuantifier :: Quantifier -> Result
 transQuantifier x = case x of
   Exists -> failure x
   Forall -> failure x
   Most -> failure x
+  Many -> failure x
   The -> failure x
-transEquation :: Equation -> Result
-transEquation x = case x of
-  Equals ident1 ident2 -> failure x
+  No -> failure x
+  Few -> failure x
 
