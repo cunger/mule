@@ -19,6 +19,8 @@ Many   . Quantifier ::= "many" ;
 No     . Quantifier ::= "no" ;
 Few    . Quantifier ::= "few" ;
 
+Top    . Expression ::= "top" ;
+
 
 separator Ident "," ;
 separator nonempty Expression "," ;

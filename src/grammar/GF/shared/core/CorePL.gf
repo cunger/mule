@@ -112,7 +112,7 @@ concrete CorePL of Core = open Prelude in {
 
         ---- Others
 
-        Exists cn = "exists x [ ] [" ++ app cn "x" ++ "]";
+        Exists cn = "exists x [ top ] [" ++ app cn "x" ++ "]";
 
 
         ---------------------
@@ -121,8 +121,8 @@ concrete CorePL of Core = open Prelude in {
 
         somebody  = { subj = "lambda P some x [ person (x) ] [ (P @ x) ]";
                       obj  = "lambda R lambda y some x [ person (x) ] [ ((R @ x) @ y) ]" };
-        something = { subj = "lambda P some x [ ] [ (P @ x) ]";
-                      obj  = "lambda R lambda y some x [ ] [ ((R @ x) @ y) ]" };
+        something = { subj = "lambda P some x [ top ] [ (P @ x) ]";
+                      obj  = "lambda R lambda y some x [ top ] [ ((R @ x) @ y) ]" };
 
         ---- Anaphors
 

@@ -65,7 +65,7 @@ Dutch:
      sPosPast + [ apply_VP + [ an + [ player + ] , lose1 + ] ]
      some x [player (x)] [lose (x)]
 
- --> een Eurpoese speler verloor
+ --> een Europese speler verloor
      sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ European + , player + ] ] , lose1 + ] ]
      some x [(European (x)and player (x))][lose (x)]
 

@@ -23,11 +23,13 @@ run e = closure [e] applyRule rules [e]
 
 -- here: a = Rule, b = Expression
 closure :: Eq b => [b] -> (a -> b -> [b]) -> [a] -> [b] -> [b]
-closure done f as bs = let gen_bs = concat (map (\ b -> concat (map (\ a -> f a b) as)) bs)
+closure done f as bs = let gen_bs = nub $ concat (map (\ b -> concat (map (\ a -> f a b) as)) bs)
                            new_bs = filter (not . (`elem` done)) gen_bs
                        in  if   null new_bs
-                           then nub done
+                           then done
                            else closure (done ++ new_bs) f as new_bs
+
+-- TODO Why does initial [b] end up in result?
 
 applyRule :: Rule -> Expression -> [Expression]
 applyRule rule tree@(Leaf   _ _)    = rule tree

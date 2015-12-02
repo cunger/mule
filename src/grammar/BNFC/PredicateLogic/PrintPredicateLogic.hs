@@ -96,6 +96,7 @@ instance Print Expression where
     Abstraction id expression -> prPrec i 0 (concatD [doc (showString "lambda"), prt 0 id, prt 0 expression])
     Application expression1 expression2 -> prPrec i 0 (concatD [doc (showString "("), prt 0 expression1, doc (showString "@"), prt 0 expression2, doc (showString ")")])
     Quantification quantifier id expression1 expression2 -> prPrec i 0 (concatD [prt 0 quantifier, prt 0 id, doc (showString "["), prt 0 expression1, doc (showString "]"), doc (showString "["), prt 0 expression2, doc (showString "]")])
+    Top -> prPrec i 0 (concatD [doc (showString "top")])
   prtList _ [x] = (concatD [prt 0 x])
   prtList _ (x:xs) = (concatD [prt 0 x, doc (showString ","), prt 0 xs])
 instance Print Quantifier where

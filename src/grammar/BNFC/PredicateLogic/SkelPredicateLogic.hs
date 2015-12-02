@@ -23,6 +23,7 @@ transExpression x = case x of
   Abstraction ident expression -> failure x
   Application expression1 expression2 -> failure x
   Quantification quantifier ident expression1 expression2 -> failure x
+  Top -> failure x
 transQuantifier :: Quantifier -> Result
 transQuantifier x = case x of
   Exists -> failure x

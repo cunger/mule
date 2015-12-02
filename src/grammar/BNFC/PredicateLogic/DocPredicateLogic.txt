@@ -26,7 +26,7 @@ The set of reserved words is the set of terminals appearing in the grammar. Thos
 The reserved words used in PredicateLogic are the following:
   | ``all`` | ``and`` | ``few`` | ``lambda``
   | ``many`` | ``most`` | ``no`` | ``not``
-  | ``or`` | ``some`` |  | 
+  | ``or`` | ``some`` | ``top`` | 
 
 The symbols used in PredicateLogic are the following:
   | ( | ) | -> | @
@@ -50,6 +50,7 @@ All other symbols are terminals.
   |  |  **|**  | ``lambda`` //Ident// //Expression// 
   |  |  **|**  | ``(`` //Expression// ``@`` //Expression// ``)`` 
   |  |  **|**  | //Quantifier// //Ident// ``[`` //Expression// ``]`` ``[`` //Expression// ``]`` 
+  |  |  **|**  | ``top`` 
   | //Quantifier// | -> | ``some`` 
   |  |  **|**  | ``all`` 
   |  |  **|**  | ``most`` 

@@ -18,6 +18,7 @@ data Expression
     | Abstraction Ident Expression
     | Application Expression Expression
     | Quantification Quantifier Ident Expression Expression
+    | Top
   deriving (Eq, Ord, Show, Read)
 
 data Quantifier = Exists | Forall | Most | Many | No | Few

@@ -22,7 +22,7 @@ concrete DartsDut of Darts = CoreDut ** open SyntaxDut, ParadigmsDut in {
         excellent = variants { mkAP (mkA "uitstekend"); mkAP (mkA "voortreffelijk") };
         British   = mkAP (mkA "Brits");
         Dutch     = mkAP (mkA "Nederlands");
-        European  = mkAP (mkA "Europes" "Eurpoese");
+        European  = mkAP (mkA "Europes" "Europese");
 
         win1      = mkVP winnen_V;
         lose1     = mkVP verliezen_V;

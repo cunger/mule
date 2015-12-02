@@ -45,3 +45,4 @@ replace v e' (Negation e)            = Negation (replace v e' e)
 replace v e' e@(Quantification q (Ident str) e1 e2)
   | str == v  = e
   | otherwise = Quantification q (Ident str) (replace v e' e1) (replace v e' e2)
+replace _ _ e = e
