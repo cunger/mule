@@ -29,7 +29,6 @@ transQuantifier x = case x of
   Forall -> failure x
   Most -> failure x
   Many -> failure x
-  The -> failure x
   No -> failure x
   Few -> failure x
 

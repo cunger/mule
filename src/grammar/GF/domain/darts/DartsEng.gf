@@ -24,17 +24,23 @@ concrete DartsEng of Darts = CoreEng ** open SyntaxEng, ParadigmsEng in {
         Dutch     = mkAP (mkA "Dutch");
         European  = mkAP (mkA "European");
 
-        win1      = mkVP (mkV "win");
-        lose1     = mkVP (mkV "lose");
-        win2      = mkV2 (mkV "win");
-        lose2     = mkV2 (mkV "lose");
+        win1      = mkVP win_V;
+        lose1     = mkVP lose_V;
+        win2      = mkV2 win_V;
+        lose2     = mkV2 lose_V;
 
-        play_against = mkV2 (mkV "play") (mkPrep "against");
-        win_against  = mkV2 (mkV "win")  (mkPrep "against");
-        lose_against = mkV2 (mkV "lose") (mkPrep "against");
+        play_against = mkV2 (mkV "play") against_Prep;
+        win_against  = mkV2 win_V against_Prep;
+        lose_against = mkV2 lose_V against_Prep;
 
         participate  = mkV2 (mkV "participate") in_Prep;
 
-        nationality  = mkPrep "from";
+        from = mkPrep "from";
+
+    oper
+
+        win_V  : V = mkV "win" "won" "won";
+        lose_V : V = mkV "lose" "lost" "lost";
+        against_Prep : Prep = mkPrep "against";
 
 }

@@ -104,7 +104,6 @@ instance Print Quantifier where
     Forall -> prPrec i 0 (concatD [doc (showString "all")])
     Most -> prPrec i 0 (concatD [doc (showString "most")])
     Many -> prPrec i 0 (concatD [doc (showString "many")])
-    The -> prPrec i 0 (concatD [doc (showString "the")])
     No -> prPrec i 0 (concatD [doc (showString "no")])
     Few -> prPrec i 0 (concatD [doc (showString "few")])
 

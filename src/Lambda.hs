@@ -12,7 +12,7 @@ run str = case (pExpression $ myLexer $ str) of
                 _    -> error $ "BNFC failed to parse: " ++ str
 
 reduce :: Expression -> Expression
-reduce e@(Application (Abstraction (Ident v) e1) e2)
+reduce e@(Application (Abstraction (Ident v) e1) e2)   -- TODO variable renaming
                            = reduce $ replace v e2 e1
 reduce (Application e1@(Application _ _) e2)
                            = case reduce e1 of

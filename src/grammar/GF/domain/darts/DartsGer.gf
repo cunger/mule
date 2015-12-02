@@ -10,7 +10,7 @@ concrete DartsGer of Darts = CoreGer ** open SyntaxGer, ParadigmsGer in {
 
         England       = mkNP (mkPN "England");
         Netherlands   = variants { mkNP the_Det (mkCN (mkN "Niederlande" feminine)); mkNP (mkPN "Holland") };
-        Europe        = mkNP (mkPN "Europe");
+        Europe        = mkNP (mkPN "Europa");
 
         player        = mkCN (mkN "Spieler" "Spieler" masculine);
         match         = mkCN (mkN "Spiel" "Spiele" neuter);
@@ -35,7 +35,7 @@ concrete DartsGer of Darts = CoreGer ** open SyntaxGer, ParadigmsGer in {
 
         participate  = mkV2 (mkV "teil" (mkV "nehmen")) (mkPrep "an" dative);
 
-        nationality  = mkPrep "aus" dative;
+        from = mkPrep "aus" dative;
 
    oper
 

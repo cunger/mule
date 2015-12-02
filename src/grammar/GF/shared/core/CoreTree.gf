@@ -85,26 +85,26 @@ concrete CoreTree of Core = {
 
         ---- Determiners
 
-        every  cn = branch1 "quant" (branch1 "every" ((switch cn) ! Reverse));
-        all    cn = branch1 "quant" (branch1 "all"   ((switch cn) ! Reverse));
+        every  cn = branch1 "every" ((switch cn) ! Reverse);
+        all    cn = branch1 "all"   ((switch cn) ! Reverse);
 
-        someSg cn = branch1 "quant" (branch1 "someSg" cn);
-        somePl cn = branch1 "quant" (branch1 "somePl" cn);
-        an     cn = branch1 "quant" (branch1 "an"     cn);
+        someSg cn = branch1 "someSg" cn;
+        somePl cn = branch1 "somePl" cn;
+        an     cn = branch1 "an"     cn;
 
-        the    cn = branch1 "quant" (branch1 "the"  ((switch cn) ! Break));
+        the    cn = branch1 "the"  ((switch cn) ! Break);
 
-        most   cn = branch1 "quant" (branch1 "most" ((switch cn) ! Break));
-        many   cn = branch1 "quant" (branch1 "many" cn);
+        most   cn = branch1 "most" ((switch cn) ! Break);
+        many   cn = branch1 "many" cn;
 
-        no  cn vp = branch2 "quant" (branch1 "no"  ((switch cn) ! Reverse)) ((switch vp) ! Reverse);
-        few cn vp = branch2 "quant" (branch1 "few" ((switch cn) ! Reverse)) ((switch vp) ! Reverse);
+        no  cn vp = branch2 "no"  ((switch cn) ! Reverse) ((switch vp) ! Reverse);
+        few cn vp = branch2 "few" ((switch cn) ! Reverse) ((switch vp) ! Reverse);
 
 
         ---- Coordination
 
-        BaseEntity_NP e1 e2 = branch2 "BaseEntity_NP" e1 e2;
-        ConsEntity_NP e1 e2 = branch2 "ConsEntity_NP" e1 e2;
+        BaseNounPhrase e1 e2 = branch2 "BaseNounPhrase" e1 e2;
+        ConsNounPhrase e1 e2 = branch2 "ConsNounPhrase" e1 e2;
 
         and_NP e = branch1 "and_NP" e;
         or_NP  e = branch1 "or_NP"  e;
@@ -124,6 +124,8 @@ concrete CoreTree of Core = {
         ---- Expressions ----
         ---------------------
 
+        somebody  = leaf "somebody";
+        something = leaf "something";
 
         ---- Anaphors
 

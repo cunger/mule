@@ -88,7 +88,7 @@ concrete CorePL of Core = open Prelude in {
         somePl cn = gquant "some" cn;
         an     cn = gquant "some" cn;
 
-        the    cn = gquant "the"  cn;
+        the    cn = entity (app "the" cn);
         most   cn = gquant "most" cn;
         many   cn = gquant "many" cn;
 
@@ -98,8 +98,8 @@ concrete CorePL of Core = open Prelude in {
 
         ---- Coordination
 
-        BaseEntity_NP e1 e2 = e1 ++ e2;
-        ConsEntity_NP e1 e2 = e1 ++ e2;
+--      BaseNounPhrase e1 e2 = e1 ++ e2;
+--      ConsNounPhrase e1 e2 = e1 ++ e2;
 
 --      and_NP e = app "sum" e;
 --      or_NP  e = app "union" e;
@@ -119,6 +119,10 @@ concrete CorePL of Core = open Prelude in {
         ---- Expressions ----
         ---------------------
 
+        somebody  = { subj = "lambda P some x [ person (x) ] [ (P @ x) ]";
+                      obj  = "lambda R lambda y some x [ person (x) ] [ ((R @ x) @ y) ]" };
+        something = { subj = "lambda P some x [ ] [ (P @ x) ]";
+                      obj  = "lambda R lambda y some x [ ] [ ((R @ x) @ y) ]" };
 
         ---- Anaphors
 
@@ -145,11 +149,11 @@ concrete CorePL of Core = open Prelude in {
 
         entity : Str -> NounPhraseRecord = \ e ->
                                   { subj = "lambda P (P @" ++ e ++ ")";
-                                    obj  = "lambda R lambda y ((R @ y) @" ++ e ++ ")" };
+                                    obj  = "lambda R lambda y ((R @ " ++ e ++ ") @ y)" };
 
         gquant : Str -> Str -> NounPhraseRecord = \ q, cn ->
                                   { subj = "lambda P" ++ q ++ "x [" ++ app cn "x" ++ "] [ (P @ x) ]";
-                                    obj  = "lambda R lambda y" ++ q ++ "x [" ++ app cn "x" ++ "] [ ((R @ y) @ x) ]" };
+                                    obj  = "lambda R lambda y" ++ q ++ "x [" ++ app cn "x" ++ "] [ ((R @ x) @ y) ]" };
 
         app    : Str -> Str -> Str = \ f, a -> "(" ++ f ++ "@" ++ a ++ ")";
         unify  : Str -> Str -> Str = \ p, q -> "lambda v (" ++ (app p "v") ++ "and" ++ (app q "v") ++ ")";

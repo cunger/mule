@@ -35,6 +35,6 @@ concrete DartsPL of Darts = CorePL ** {
 
         participate  = pred2 "participate";
 
-        nationality  = pred2 "nationality";
+        from = pred2 "from";
 
 }

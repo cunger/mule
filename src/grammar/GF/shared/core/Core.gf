@@ -103,7 +103,7 @@ abstract Core = {
 
         and_S, or_S : Sentence -> Sentence -> Sentence;
         if_then_S   : Sentence -> Sentence -> Sentence;
-        
+
 
         ---- Others
 
@@ -114,6 +114,7 @@ abstract Core = {
         ---- Expressions ----
         ---------------------
 
+        somebody, something : NounPhrase;
 
         ---- Anaphors
 

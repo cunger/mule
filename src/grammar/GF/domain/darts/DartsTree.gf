@@ -35,6 +35,6 @@ concrete DartsTree of Darts = CoreTree ** {
 
         participate  = leaf "participate";
 
-        nationality  = leaf "nationality";
+        from = leaf "from";
 
 }

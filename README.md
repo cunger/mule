@@ -1,69 +1,108 @@
 
-_mule_ is a prototype engine for multilingual natural logic, powered by [Grammatical Framework](http://www.grammaticalframework.org). It is still under development. 
+_mule_ is a prototype engine for multilingual natural logic, powered by [Grammatical Framework](http://www.grammaticalframework.org). It is still under development.
 
-## Build and run 
+## Build and run
 
-_mule_ is built using [stack](https://github.com/commercialhaskell/stack), so you can build and run an executable like this: 
+_mule_ is built using [stack](https://github.com/commercialhaskell/stack), so you can build and run an executable like this:
 
 ```
 stack build
 stack exec mule-exe
 ```
 
-Or load it in GHCi like this: 
+Or load it in GHCi like this:
 
 ```
 stack ghci
-> :load Main 
-> main 
+> :load Main
+> main
 ```
 
-## Example 
+## Example
 
 English:
 
 ```
-some happy man refused to smile
-=
-sPosPast + [ quant + [ someSg + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
--->
-sPosPast + [  quant + [  someSg + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  quant - [  someSg - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
-sNegPast + [  quant - [  someSg - [  man -  ]  , smile -  ]  ]
-=
-some man refused to smile
-some happy man didn't smile
-some man didn't smile
+> a Dutch player lost
+
+  sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+  some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> a Dutch player lost
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+     some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> a player lost
+     sPosPast + [ apply_VP + [ an + [ player + ] , lose1 + ] ]
+     some x [player (x)] [lose (x)]
+
+ --> a European player lost
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ European + , player + ] ] , lose1 + ] ]
+     some x [(European (x)and player (x))][lose (x)]
+
+ --> a player from the Netherlands lost
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Netherlands + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Netherlands)and player (x))][lose (x)]
+
+ --> a player from Europe lost
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Europe + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Europe)and player (x))][lose (x)]
 ```
 
-Dutch: 
+Dutch:
 
 ```
-een gelukkige man weigerde te glimlachen
-=
-sPosPast + [ quant + [ an + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
--->
-sPosPast + [  quant + [  an + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  quant - [  an - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
-sNegPast + [  quant - [  an - [  man -  ]  , smile -  ]  ]
-=
-een man weigerde te glimlachen
-een gelukkige man glimlachte niet
-een man glimlachte niet
+> een Nederlandse speler verloor
+
+  sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+  some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> een Nederlandse speler verloor
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+     some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> een speler verloor
+     sPosPast + [ apply_VP + [ an + [ player + ] , lose1 + ] ]
+     some x [player (x)] [lose (x)]
+
+ --> een Eurpoese speler verloor
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ European + , player + ] ] , lose1 + ] ]
+     some x [(European (x)and player (x))][lose (x)]
+
+ --> een speler uit Nederland verloor
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Netherlands + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Netherlands)and player (x))][lose (x)]
+
+ --> een speler uit Europa verloor
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Europe + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Europe)and player (x))][lose (x)]
 ```
 
 German:
 
 ```
-ein glücklicher Mann weigerte sich zu lächeln
-=
-sPosPast + [ quant + [ an + [ modify_AP_CN + [ happy + , man + ] ] , refuse_to + [ smile - ] ] ]
--->
-sPosPast + [  quant + [  an + [  man +  ]  , refuse_to + [  smile -  ]  ]  ]
-sNegPast + [  quant - [  an - [  modify_AP_CN - [  happy -  , man -  ]  ]  , smile -  ]  ]
-sNegPast + [  quant - [  an - [  man -  ]  , smile -  ]  ]
-=
-ein Mann weigerte sich zu lächeln
-ein glücklicher Mann lächelte nicht
-ein Mann lächelte nicht
+> ein niederländischer Spieler verlor
+
+  sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+  some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> ein niederländischer Spieler verlor
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ Dutch + , player + ] ] , lose1 + ] ]
+     some x [(Dutch (x)and player (x))][lose (x)]
+
+ --> ein Spieler verlor
+     sPosPast + [ apply_VP + [ an + [ player + ] , lose1 + ] ]
+     some x [player (x)] [lose (x)]
+
+ --> ein europäischer Spieler verlor
+     sPosPast + [ apply_VP + [ an + [ modify_AP_CN + [ European + , player + ] ] , lose1 + ] ]
+     some x [(European (x)and player (x))][lose (x)]
+
+ --> ein Spieler aus Holland verlor
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Netherlands + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Netherlands)and player (x))][lose (x)]
+
+ --> ein Spieler aus Europa verlor
+     sPosPast + [ apply_VP + [ an + [ modify_Adv_CN + [ apply_Prep + [ from + , Europe + ] , player + ] ] , lose1 + ] ]
+     some x [(from (x, Europe)and player (x))][lose (x)]
 ```

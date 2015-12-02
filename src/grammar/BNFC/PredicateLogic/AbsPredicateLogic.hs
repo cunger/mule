@@ -20,6 +20,6 @@ data Expression
     | Quantification Quantifier Ident Expression Expression
   deriving (Eq, Ord, Show, Read)
 
-data Quantifier = Exists | Forall | Most | Many | The | No | Few
+data Quantifier = Exists | Forall | Most | Many | No | Few
   deriving (Eq, Ord, Show, Read)
 

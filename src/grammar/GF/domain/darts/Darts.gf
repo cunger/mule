@@ -19,6 +19,6 @@ abstract Darts = Core ** {
 
         participate : Relation_V2;
 
-        nationality : Relation_Prep;
+        from : Relation_Prep;
 
 }

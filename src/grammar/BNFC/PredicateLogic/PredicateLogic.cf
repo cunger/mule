@@ -16,7 +16,6 @@ Exists . Quantifier ::= "some" ;
 Forall . Quantifier ::= "all" ;
 Most   . Quantifier ::= "most" ;
 Many   . Quantifier ::= "many" ;
-The    . Quantifier ::= "the" ;
 No     . Quantifier ::= "no" ;
 Few    . Quantifier ::= "few" ;
 

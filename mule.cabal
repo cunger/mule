@@ -16,10 +16,15 @@ library
   hs-source-dirs:      src
                      , src/grammar/BNFC/NaturalLogic
                      , src/grammar/BNFC/PredicateLogic
+                     , src/rules
+                     , src/rules/shared
+                     , src/rules/domain
   exposed-modules:     Pipeline
                      , Translator
                      , Lambda
                      , InferenceEngine
+                     , Rules
+                     , Darts
                      , ErrM
                      , AbsNaturalLogic
                      , LexNaturalLogic

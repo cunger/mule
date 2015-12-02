@@ -29,7 +29,7 @@ drawInferences g t = let tree  = ast2nl g t
 
 prettyPrint :: Grammar -> Interpretation -> String
 prettyPrint g@(Grammar pgf l_nl l_pl) i@(Interpretation l ast inferences) =
-    "\n  " ++ printAST ast ++
+--  "\n  " ++ printAST ast ++
     "\n  " ++ linNL g ast ++
 --  "\n  " ++ linPL g ast ++
     "\n  " ++ (Lambda.run $ linPL g ast) ++

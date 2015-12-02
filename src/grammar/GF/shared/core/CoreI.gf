@@ -119,6 +119,8 @@ incomplete concrete CoreI of Core = open Syntax in {
         ---- Expressions ----
         ---------------------
 
+        somebody  = somebody_NP;
+        something = something_NP;
 
         ---- Anaphors
 
