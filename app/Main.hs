@@ -6,7 +6,8 @@ import Translator
 import Pipeline
 
 import PGF
-import System.Exit (exitSuccess,exitFailure)
+import System.Console.Haskeline
+import System.Exit (exitFailure)
 
 
 main :: IO ()
@@ -15,14 +16,14 @@ main = do
          pgf    <- readPGF  Config.grammar
          case (readLanguage Config.lNaturalLogic, readLanguage Config.lPredicateLogic) of
               (Just l_nl, Just l_pl) -> do putStrLn "Ready."
-                                           loop (Grammar pgf l_nl l_pl)
+                                           runInputT defaultSettings $ loop (Grammar pgf l_nl l_pl)
               _ -> exitFailure
 
-loop :: Grammar -> IO ()
-loop g = do putStrLn ""
-            putStr "> "
-            str <- getLine
-            case str of
-                 "q" -> exitSuccess
-                 _   -> do mapM putStrLn $ map (prettyPrint g) (process g str)
-                           loop g
+loop :: Grammar -> InputT IO ()
+loop g = do input <- getInputLine "> "
+            case input of
+                 Nothing  -> return ()
+                 Just "q" -> return ()
+                 Just str -> do outputStrLn ""
+                                mapM outputStrLn $ map (prettyPrint g) (process g str)
+                                loop g
