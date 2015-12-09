@@ -3,7 +3,7 @@ concrete ApplicationDut of Application =
                 -- Core extensions
 
                    ScopalVerbsDut
-              -- , DateTimeDut
+                 , DateTimeDut
 
                 -- Domains
 
@@ -12,7 +12,7 @@ concrete ApplicationDut of Application =
 
                 -- Tasks
 
-              -- , QADut
-              -- , ServiceDialogDut
+                 , QADut
+                 , ServiceDialogDut
 
                  ;

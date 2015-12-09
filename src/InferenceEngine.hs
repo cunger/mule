@@ -2,37 +2,38 @@ module InferenceEngine
      ( run ) where
 
 import AbsNaturalLogic
+import Interpretation
 import Rules
 
 import qualified Core
---import qualified ScopalVerbs
+import qualified ScopalVerbs
 ------ all required domain rule sets
 import qualified Darts
 ------
 
-import Data.List (nub)
+import Data.List (nub,(\\))
 import Data.String.Utils (replace)
 
 
 ---- concatenate all imported rules sets
-rules = Core.rules ++ Darts.rules
+rules = Core.rules ++ Darts.rules 
 
 
 run :: Expression -> [Expression]
-run e = closure [e] applyRule rules [e]
+run e = (closure applyRule rules e) \\ [e]
 
--- here: a = Rule, b = Expression
-closure :: Eq b => [b] -> (a -> b -> [b]) -> [a] -> [b] -> [b]
-closure done f as bs = let gen_bs = nub $ concat (map (\ b -> concat (map (\ a -> f a b) as)) bs)
-                           new_bs = filter (not . (`elem` done)) gen_bs
+closure :: (Rule -> Expression -> [Expression]) -> [Rule] -> Expression -> [Expression]
+closure f as b = step [] f as [b]
+   where
+   step :: [Expression] -> (Rule -> Expression -> [Expression]) -> [Rule] -> [Expression] -> [Expression]
+   step done f as bs = let gen_bs = nub $ concat (map (\ b -> concat (map (\ a -> f a b) as)) bs)
+                           new_bs = filter (\ b -> not (any (equiv b) (done ++ bs))) gen_bs
                        in  if   null new_bs
                            then done
-                           else closure (done ++ new_bs) f as new_bs
-
--- TODO Why does initial [b] end up in result?
+                           else step (done ++ new_bs) f as new_bs
 
 applyRule :: Rule -> Expression -> [Expression]
-applyRule rule tree@(Leaf   _ _)    = rule tree
+applyRule rule tree@(Leaf   _ _ _)  = rule tree
 applyRule rule tree@(Branch _ _ []) = rule tree
 applyRule rule tree@(Branch s m ts) = nub
                                     $ filter (\ t -> not (t == tree))

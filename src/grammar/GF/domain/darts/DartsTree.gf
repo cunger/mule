@@ -3,38 +3,38 @@ concrete DartsTree of Darts = CoreTree ** {
 
     lin
 
-        Taylor        = leaf "Taylor";
-        VanGerwen     = leaf "VanGerwen";
-        VanBarneveld  = leaf "VanBarneveld";
-        Webster       = leaf "Webster";
+        Taylor        = leaf "NP" "Taylor";
+        VanGerwen     = leaf "NP" "VanGerwen";
+        VanBarneveld  = leaf "NP" "VanBarneveld";
+        Webster       = leaf "NP" "Webster";
 
-        England       = leaf "England";
-        Netherlands   = leaf "Netherlands";
-        Europe        = leaf "Europe";
+        England       = leaf "NP" "England";
+        Netherlands   = leaf "NP" "Netherlands";
+        Europe        = leaf "NP" "Europe";
 
-        player        = leaf "player";
-        match         = leaf "match";
-        tournament    = leaf "tournament";
-        worldchampion = leaf "worldchampion";
-        worldchampionship = leaf "worldchampionship";
+        player        = leaf "CN" "player";
+        match         = leaf "CN" "match";
+        tournament    = leaf "CN" "tournament";
+        worldchampion = leaf "CN" "worldchampion";
+        worldchampionship = leaf "CN" "worldchampionship";
 
-        happy     = leaf "happy";
-        excellent = leaf "excellent";
-        British   = leaf "British";
-        Dutch     = leaf "Dutch";
-        European  = leaf "European";
+        happy     = leaf "AP" "happy";
+        excellent = leaf "AP" "excellent";
+        British   = leaf "AP" "British";
+        Dutch     = leaf "AP" "Dutch";
+        European  = leaf "AP" "European";
 
-        win1      = leaf "win1";
-        lose1     = leaf "lose1";
-        win2      = leaf "win2";
-        lose2     = leaf "lose2";
+        win1      = leaf "VP" "win1";
+        lose1     = leaf "VP" "lose1";
+        win2      = leaf "V"  "win2";
+        lose2     = leaf "V"  "lose2";
 
-        play_against = leaf "play_against";
-        win_against  = leaf "win_against";
-        lose_against = leaf "lose_against";
+        play_against = leaf "V" "play_against";
+        win_against  = leaf "V" "win_against";
+        lose_against = leaf "V" "lose_against";
 
-        participate  = leaf "participate";
+        participate  = leaf "V" "participate";
 
-        from = leaf "from";
+        from = leaf "Prep" "from";
 
 }

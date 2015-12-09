@@ -3,17 +3,24 @@ module Core where
 import AbsNaturalLogic
 import Rules
 
+import Data.List ((\\))
 
-rules = [adjectiveUp]
 
+rules = [stripModifiers]
 
 -- TODO
 -- NP conjunction (X conj Y ...) -> (X ... conj Y ...)
+-- S conjunction
 
--- (CN- (A- ...) (CN- ...)) => (CN- ...)
-adjectiveUp :: Rule
-adjectiveUp (Branch (Ident "modify_AP_CN") Plus [ Leaf (Ident adj) m, cn ]) = [cn]
-adjectiveUp _ = []
+stripModifiers :: Rule
+stripModifiers (Branch i Plus ts) = [ Branch i Plus (ts \\ [t]) | t <- filter isModifier ts ]
+stripModifiers _ = []
 
----- (CN+ ...) => (CN+ (A+ ...) (CN+ ...))
---adjectiveDown :: Rule
+
+-- AUX
+
+isModifier :: Expression -> Bool
+isModifier e = (ident e) `elem` ["AP","Adv"]
+  where
+       ident (Leaf   (Ident c) _ _) = c
+       ident (Branch (Ident c) _ _) = c

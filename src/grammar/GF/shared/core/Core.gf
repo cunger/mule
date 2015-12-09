@@ -6,12 +6,14 @@ abstract Core = {
         Anaphor;
 
         NounPhrase;
-        [NounPhrase] {2};
+       [NounPhrase] {2};
 
         Predicate_CN;
         Predicate_AP;
+       [Predicate_AP] {2};
         Predicate_VP;
         Predicate_Adv;
+       [Predicate_Adv] {1};
 
         Relation_N2;
         Relation_A2;
@@ -99,7 +101,9 @@ abstract Core = {
 
         ---- Coordination
 
-        and_NP, or_NP : [NounPhrase] -> NounPhrase;
+        and_NP,  or_NP  : [NounPhrase]    -> NounPhrase;
+        and_AP,  or_AP  : [Predicate_AP]  -> Predicate_AP;
+        and_Adv, or_Adv : [Predicate_Adv] -> [Predicate_Adv] -> Predicate_Adv;
 
         and_S, or_S : Sentence -> Sentence -> Sentence;
         if_then_S   : Sentence -> Sentence -> Sentence;
@@ -114,13 +118,17 @@ abstract Core = {
         ---- Expressions ----
         ---------------------
 
-        somebody, something : NounPhrase;
+
+        somebody,  something  : NounPhrase;
+        everybody, everything : NounPhrase;
+        nobody,    nothing    : NounPhrase;
+
 
         ---- Anaphors
 
         I, We, YouSg, YouPl, He, She, It, They : Anaphor;
 
         anaphor : Anaphor -> NounPhrase;
---      poss    : Anaphor -> Predicate_CN -> NounPhrase;
+        poss    : Anaphor -> Predicate_CN -> NounPhrase;
 
 }

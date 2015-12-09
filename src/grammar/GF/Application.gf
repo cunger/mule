@@ -3,12 +3,12 @@ abstract Application =
                 -- Core extensions
 
                    ScopalVerbs
-              -- , DateTime
+                 , DateTime
 
                 -- Domains
 
                  , Darts
-                 , Flights
+              -- , Flights
 
                 -- Tasks
 

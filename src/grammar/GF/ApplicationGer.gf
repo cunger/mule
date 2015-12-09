@@ -3,12 +3,12 @@ concrete ApplicationGer of Application =
                 -- Core extensions
 
                    ScopalVerbsGer
-              -- , DateTimeGer
+                 , DateTimeGer
 
                 -- Domains
 
                  , DartsGer
-                 , FlightsGer
+              -- , FlightsGer
 
                 -- Tasks
 

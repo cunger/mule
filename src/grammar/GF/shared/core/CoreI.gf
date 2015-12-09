@@ -3,24 +3,26 @@ incomplete concrete CoreI of Core = open Syntax in {
 
     lincat
 
-        Anaphor       = Pron;
+        Anaphor        = Pron;
 
-        NounPhrase    = NP;
-        [NounPhrase]  = [NP];
+        NounPhrase     = NP;
+       [NounPhrase]    = [NP];
 
-        Predicate_CN  = CN;
-        Predicate_AP  = AP;
-        Predicate_VP  = VP;
-        Predicate_Adv = Adv;
+        Predicate_CN   = CN;
+        Predicate_AP   = AP;
+       [Predicate_AP]  = [AP];
+        Predicate_VP   = VP;
+        Predicate_Adv  = Adv;
+       [Predicate_Adv] = Adv;
 
-        Relation_N2   = N2;
-        Relation_A2   = A2;
-        Relation_V2   = V2;
-        Relation_Prep = Prep;
+        Relation_N2    = N2;
+        Relation_A2    = A2;
+        Relation_V2    = V2;
+        Relation_Prep  = Prep;
 
-        Clause        = Cl;
-        Sentence      = S;
-        Text_Str      = Str;
+        Clause         = Cl;
+        Sentence       = S;
+        Text_Str       = Str;
 
 
     lin
@@ -98,14 +100,23 @@ incomplete concrete CoreI of Core = open Syntax in {
 
         ---- Coordination
 
-        BaseNounPhrase e1 e2 = mkListNP e1 e2;
-        ConsNounPhrase e1 e2 = mkListNP e1 e2;
+        BaseNounPhrase    e1 e2 = mkListNP  e1 e2;
+        ConsNounPhrase    e1 e2 = mkListNP  e1 e2;
+        BasePredicate_AP  e1 e2 = mkListAP  e1 e2;
+        ConsPredicate_AP  e1 e2 = mkListAP  e1 e2;
+        BasePredicate_Adv e     = e;
+        ConsPredicate_Adv e1 e2 = lin Adv { s = e1.s ++ e2.s };
 
-        and_NP e = mkNP and_Conj e;
-        or_NP  e = mkNP or_Conj  e;
+        and_NP  e = mkNP  and_Conj e;
+        or_NP   e = mkNP  or_Conj  e;
+        and_AP  e = mkAP  and_Conj e;
+        or_AP   e = mkAP  or_Conj  e;
 
-        and_S s1 s2 = mkS and_Conj s1 s2;
-        or_S  s1 s2 = mkS or_Conj  s1 s2;
+        and_Adv e1 e2 = mkAdv and_Conj e1 e2;
+        or_Adv  e1 e2 = mkAdv or_Conj  e1 e2;
+
+        and_S   s1 s2 = mkS and_Conj s1 s2;
+        or_S    s1 s2 = mkS or_Conj  s1 s2;
 
         if_then_S s1 s2 = mkS if_then_Conj s1 s2;
 
@@ -119,8 +130,14 @@ incomplete concrete CoreI of Core = open Syntax in {
         ---- Expressions ----
         ---------------------
 
-        somebody  = somebody_NP;
-        something = something_NP;
+
+        somebody   = somebody_NP;
+        something  = something_NP;
+        everybody  = everybody_NP;
+        everything = everything_NP;
+        nobody     = nobody_NP;
+        nothing    = nothing_NP;
+
 
         ---- Anaphors
 
@@ -134,6 +151,6 @@ incomplete concrete CoreI of Core = open Syntax in {
         They  = they_Pron;
 
         anaphor a   = mkNP a;
---      poss    a p = mkNP a p;
+        poss    a p = mkNP a p;
 
 }

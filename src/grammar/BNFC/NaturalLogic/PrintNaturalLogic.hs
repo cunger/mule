@@ -85,7 +85,7 @@ instance Print Ident where
 
 instance Print Expression where
   prt i e = case e of
-    Leaf id marking -> prPrec i 0 (concatD [prt 0 id, prt 0 marking])
+    Leaf id1 id2 marking -> prPrec i 0 (concatD [prt 0 id1, prt 0 id2, prt 0 marking])
     Branch id marking expressions -> prPrec i 0 (concatD [prt 0 id, prt 0 marking, doc (showString "[ "), prt 0 expressions, doc (showString " ]")])
   prtList _ [] = (concatD [])
   prtList _ [x] = (concatD [prt 0 x])

@@ -8,9 +8,9 @@ import AbsNaturalLogic     as NL
 import ParNaturalLogic     as ParNL
 import PrintNaturalLogic   as PrintNL
 
-import AbsPredicateLogic   as PL
-import ParPredicateLogic   as ParPL
-import PrintPredicateLogic as PrintPL
+import AbsTPTP   as PL
+import ParTPTP   as ParPL
+import PrintTPTP as PrintPL
 
 
 
@@ -39,7 +39,7 @@ nl2ast (Grammar pgf l_nl _) e = case parse pgf l_nl (startCat pgf) (PrintNL.prin
 pl2ast :: Grammar -> PL.Expression -> Tree
 pl2ast (Grammar pgf _ l_pl) e = case parse pgf l_pl (startCat pgf) (PrintPL.printTree e) of
                                      []    -> error $ "Gf could not parse: " ++ PrintPL.printTree e
-                                     (e:_) -> e 
+                                     (e:_) -> e
 
 printAST :: Tree -> String
 printAST = showExpr []

@@ -1,4 +1,4 @@
-concrete DartsPL of Darts = CorePL ** {
+concrete DartsTPTP of Darts = CoreTPTP ** {
 
 
     lin

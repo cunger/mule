@@ -1,4 +1,4 @@
-concrete ScopalVerbsPL of ScopalVerbs = CorePL ** {
+concrete ScopalVerbsTPTP of ScopalVerbs = CoreTPTP ** {
 
     lin
 

@@ -14,7 +14,7 @@ transIdent x = case x of
   Ident string -> failure x
 transExpression :: Expression -> Result
 transExpression x = case x of
-  Leaf ident marking -> failure x
+  Leaf ident1 ident2 marking -> failure x
   Branch ident marking expressions -> failure x
 transMarking :: Marking -> Result
 transMarking x = case x of

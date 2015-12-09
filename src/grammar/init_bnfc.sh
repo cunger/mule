@@ -7,6 +7,6 @@ sed -i '' 's/showString "\]"/showString " \]"/' PrintNaturalLogic.hs
 sed -i '' 's/showString ","/showString " ,"/'   PrintNaturalLogic.hs
 make
 
-cd ../PredicateLogic
-bnfc -m -haskell PredicateLogic.cf
+cd ../TPTP
+bnfc -m -haskell TPTP.cf
 make

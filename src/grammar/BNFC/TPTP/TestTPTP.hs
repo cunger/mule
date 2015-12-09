@@ -6,11 +6,11 @@ import System.IO ( stdin, hGetContents )
 import System.Environment ( getArgs, getProgName )
 import System.Exit ( exitFailure, exitSuccess )
 
-import LexPredicateLogic
-import ParPredicateLogic
-import SkelPredicateLogic
-import PrintPredicateLogic
-import AbsPredicateLogic
+import LexTPTP
+import ParTPTP
+import SkelTPTP
+import PrintTPTP
+import AbsTPTP
 
 
 

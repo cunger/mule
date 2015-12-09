@@ -1,5 +1,5 @@
 
-Leaf   . Expression ::= Ident Marking ;
+Leaf   . Expression ::= Ident Ident Marking ;
 Branch . Expression ::= Ident Marking "[" [Expression] "]" ;
 
 _      . Expression ::= "(" Expression ")" ;

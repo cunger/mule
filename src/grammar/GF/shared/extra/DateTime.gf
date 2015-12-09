@@ -1,4 +1,4 @@
-abstract DateTime = {
+abstract DateTime = Core ** {
 
   cat
 
@@ -12,16 +12,17 @@ abstract DateTime = {
 
      Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday : Weekday;
 
-     Minute, Hour , Day, Week, Month, Year : TemporalUnit;
+     Minutes, Hours, Days, Weeks, Months, Years : TemporalUnit;
 
      now : DateTime;
 
-     plus  : Integer -> TemporalUnit -> Predicate_Adv;  -- in 3 Stunden / Tagen / Wochen / Jahren
-     minus : Integer -> TemporalUnit -> Predicate_Adv;  -- vor ...
-     next  : TemporalUnit -> Predicate_Adv;             -- nächste Woche
-     next_day : Weekday -> Predicate_Adv;               -- nächsten Mittwoch
+     plus  : Int -> TemporalUnit -> Predicate_Adv;  -- in 3 Stunden / Tagen / Wochen / Jahren
+     minus : Int -> TemporalUnit -> Predicate_Adv;  -- vor ...
 
-     date  : Integer -> Integer -> Integer -> DateTime; -- 2015-11-23
+     next_unit : TemporalUnit -> Predicate_Adv;         -- nächste Woche
+     next      : Weekday      -> Predicate_Adv;         -- nächsten Mittwoch
+
+     date    : Int -> Int -> Int -> DateTime; -- 2015-11-23
 
      on_date : DateTime -> Predicate_Adv;
      on_day  : Weekday  -> Predicate_Adv;

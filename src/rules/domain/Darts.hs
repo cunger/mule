@@ -3,28 +3,27 @@ module Darts (rules) where
 import Rules
 
 
-rules = [ relation2relation    "win_against"  "play_against"
-        , relation2relation    "win2"         "participate"
-        , relation2relation    "lose2"        "participate"
-        , relation2relation    "lose_against" "play_against"
-        , relation2predicate   "win_against"  "win1"
-        , relation2predicate   "lose_against" "lose1"
-        , predicate2predicateE "win1"         "win_against"
-        , predicate2predicateX "win1"         "win2"
-        , predicate2predicateE "lose1"        "lose_against"
-        , predicate2predicateX "lose1"        "lose2"
-        , modAP2modAP          "Dutch"        "European"
-        , modAP2modAP          "British"      "European"
-        , modPrepNP2modPrepNP  "from" "Netherlands" "Europe"
-        , modPrepNP2modPrepNP  "from" "England"     "Europe"
-        , modPrepNP2modAP      "from" "Netherlands" "Dutch"
-        , modPrepNP2modAP      "from" "England"     "British"
-        , modAP2modPrepNP      "Dutch"   "from" "Netherlands"
-        , modAP2modPrepNP      "British" "from" "England"
-        , entity2type          "Taylor"       "player" False
-        , entity2type          "VanGerwen"    "player" False
-        , entity2type          "VanBarneveld" "player" False
-        , entity2type          "Webster"      "player" False
+rules = [
+          relation2relation    ("V","win_against")  ("V","play_against")
+        , relation2relation    ("V","win2")         ("V","participate")
+        , relation2relation    ("V","lose2")        ("V","participate")
+        , relation2relation    ("V","lose_against") ("V","play_against")
+        , existentialClosureE  ("V","win_against")  ("VP","win1")
+        , existentialClosureE  ("V","lose_against") ("VP","lose1")
+        , existentialClosureX  ("V","win2")         ("VP","win1")
+        , existentialClosureX  ("V","lose2")        ("VP","lose1")
+        , predicate2predicate  ("AP","Dutch")       ("AP","European")
+        , predicate2predicate  ("AP","British")     ("AP","European")
+        -- , modPrepNP2modPrepNP  "from" "Netherlands" "Europe"
+        -- , modPrepNP2modPrepNP  "from" "England"     "Europe"
+        -- , modPrepNP2modAP      "from" "Netherlands" "Dutch"
+        -- , modPrepNP2modAP      "from" "England"     "British"
+        -- , modAP2modPrepNP      "Dutch"   "from" "Netherlands"
+        -- , modAP2modPrepNP      "British" "from" "England"
+        -- , entity2type          "Taylor"       "player" False
+        -- , entity2type          "VanGerwen"    "player" False
+        -- , entity2type          "VanBarneveld" "player" False
+        -- , entity2type          "Webster"      "player" False
         -- Taylor -> "player" False [ "British", "excellent" ]
         -- ...
         ]

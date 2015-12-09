@@ -3,7 +3,7 @@ concrete ApplicationEng of Application =
                 -- Core extensions
 
                    ScopalVerbsEng
-              -- , DateTimeEng
+                 , DateTimeEng
 
                 -- Domains
 
@@ -12,7 +12,7 @@ concrete ApplicationEng of Application =
 
                 -- Tasks
 
-              -- , QAEng
-              -- , ServiceDialogEng
+                 , QAEng
+                 , ServiceDialogEng
 
                  ;

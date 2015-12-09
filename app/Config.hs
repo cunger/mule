@@ -1,9 +1,13 @@
 module Config where
 
 
--- GF
-
 grammar = "src/grammar/target/Application.pgf"
 
-lNaturalLogic   = "ApplicationTree"
-lPredicateLogic = "ApplicationPL"
+lTree   =  "ApplicationTree"
+lTPTP   =  "ApplicationTPTP"
+lOthers = []
+
+showAST    = False
+showTree   = True
+showTPTP   = True
+showOthers = False

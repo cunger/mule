@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
                      , src/grammar/BNFC/NaturalLogic
-                     , src/grammar/BNFC/PredicateLogic
+                     , src/grammar/BNFC/TPTP
                      , src/rules
                      , src/rules/shared
                      , src/rules/domain
@@ -31,10 +31,10 @@ library
                      , LexNaturalLogic
                      , ParNaturalLogic
                      , PrintNaturalLogic
-                     , AbsPredicateLogic
-                     , LexPredicateLogic
-                     , ParPredicateLogic
-                     , PrintPredicateLogic
+                     , AbsTPTP
+                     , LexTPTP
+                     , ParTPTP
+                     , PrintTPTP
   build-depends:       base >= 4.7 && < 5
                      , gf
                      , haskeline

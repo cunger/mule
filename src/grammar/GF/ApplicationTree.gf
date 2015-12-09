@@ -3,12 +3,12 @@ concrete ApplicationTree of Application =
                 -- Core extensions
 
                    ScopalVerbsTree
-              -- , DateTimeTree
+                 , DateTimeTree
 
                 -- Domains
 
                  , DartsTree
-                 , FlightsTree
+              -- , FlightsTree
 
                 -- Tasks
 
