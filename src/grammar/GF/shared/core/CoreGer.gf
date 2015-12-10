@@ -1,1 +1,0 @@
-concrete CoreGer of Core = CoreI with (Syntax = SyntaxGer);

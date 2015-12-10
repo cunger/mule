@@ -1,1 +1,0 @@
-concrete QADut of QA = CoreDut ** QAI with (Syntax = SyntaxDut);

@@ -7,37 +7,31 @@ import Data.List (nub)
 
 import PGF
 
-import AbsNaturalLogic (Expression)
-
-import Config
-import Translator
-import Lambda
-import Interpretation
-import InferenceEngine
+import ErrM
+import AbsAST
+import ParAST
+import PrintAST
 
 
-process :: Grammar -> String -> [Interpretation]
-process g@(Grammar pgf _ _) str = case parseAllLang pgf (startCat pgf) str of
-                                       ((l,asts):_) -> nub
-                                                     $ map (\ ast -> let tree = ast2nl g ast
-                                                                     in  Interpretation l tree (InferenceEngine.run tree))
-                                                           asts
-                                       _            -> []
+data Parse = Parse { language   :: Language
+                   , ast        :: Expression }
 
 
-prettyPrint :: Grammar -> Interpretation -> String
-prettyPrint g i@(Interpretation l tree inferences) =
-   toString g Nothing tree ++ foldl (++) "" (map (toString g (Just l)) inferences)
+process :: PGF -> String -> [String]
+process pgf str = case parseAllLang pgf (startCat pgf) str of
+                       ((l,ts):_) -> map (\ t -> prettyPrint pgf $ mkParse l ("(" ++ showExpr [] t ++ ")")) ts
+                       _          -> []
 
-toString :: Grammar -> Maybe Language -> Expression -> String
-toString g@(Grammar pgf l_nl l_pl) maybe_l tree =
-       let
-            ast = nl2ast g tree
-       in
-       case maybe_l of
-            Just  l -> "\n\n--> " ++ linearize pgf l ast ++ "\n"
-            Nothing -> ""
-       ++
-       (if Config.showAST  then "\n    " ++ printAST ast else "") ++
-       (if Config.showTree then "\n    " ++ linNL g  ast else "") ++
-       (if Config.showTPTP then "\n    " ++ (Lambda.run $ linPL g ast) else "") -- ++
+mkParse :: Language -> String -> Parse
+mkParse l str = case pExpression $ myLexer $ str of
+                     Ok e -> Parse l e
+                     _    -> error $ "BNFC couldn't parse: " ++ str
+
+prettyPrint :: PGF -> Parse -> String
+prettyPrint pgf (Parse l ast) = let str = printTree ast
+                                in  str
+                             ++ "\n"
+                             ++ case readExpr str of
+                                     Just t  -> linearize pgf l t
+                                     Nothing -> error $ "PGF.readExpr failed for: " ++ str
+                             ++ "\n"

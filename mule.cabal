@@ -14,27 +14,14 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-                     , src/grammar/BNFC/NaturalLogic
-                     , src/grammar/BNFC/TPTP
-                     , src/rules
-                     , src/rules/shared
-                     , src/rules/domain
+                     , src/grammar/BNFC/
   exposed-modules:     Pipeline
-                     , Translator
-                     , Lambda
                      , InferenceEngine
-                     , Rules
-                     , Darts
-                     , Flights
                      , ErrM
-                     , AbsNaturalLogic
-                     , LexNaturalLogic
-                     , ParNaturalLogic
-                     , PrintNaturalLogic
-                     , AbsTPTP
-                     , LexTPTP
-                     , ParTPTP
-                     , PrintTPTP
+                     , AbsAST
+                     , LexAST
+                     , ParAST
+                     , PrintAST
   build-depends:       base >= 4.7 && < 5
                      , gf
                      , haskeline

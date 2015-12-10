@@ -1,18 +1,8 @@
 concrete ApplicationEng of Application =
 
-                -- Core extensions
+  GrammarEng,
+  LexiconEng
 
-                   ScopalVerbsEng
-                 , DateTimeEng
-
-                -- Domains
-
-                 , DartsEng
-              -- , FlightsEng
-
-                -- Tasks
-
-                 , QAEng
-                 , ServiceDialogEng
-
-                 ;
+  ** {
+  flags startcat=Phr ;
+  } ;

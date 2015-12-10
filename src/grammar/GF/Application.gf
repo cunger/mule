@@ -1,18 +1,8 @@
 abstract Application =
 
-                -- Core extensions
+  Grammar,
+  Lexicon
 
-                   ScopalVerbs
-                 , DateTime
-
-                -- Domains
-
-                 , Darts
-              -- , Flights
-
-                -- Tasks
-
-                 , QA
-                 , ServiceDialog
-
-              ** { flags startcat = Text_Str; }
+  ** {
+  flags startcat=Phr ;
+  } ;
