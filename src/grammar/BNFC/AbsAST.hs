@@ -8,6 +8,30 @@ module AbsAST where
 
 
 newtype Ident = Ident String deriving (Eq, Ord, Show, Read)
-data Expression = Constant Ident | List [Expression]
+data Expression
+    = Wildcard
+    | Slot Integer
+    | Constant Ident
+    | List [Expression]
+    | Change Relation
+  deriving (Eq, Ord, Show, Read)
+
+data Edit
+    = Sub Expression Relation Expression
+    | Del Expression
+    | Ins Expression
+  deriving (Eq, Ord, Show, Read)
+
+data Relation
+    = Equivalent
+    | Entails
+    | IsEntailedBy
+    | Excludes
+    | DisjointWith
+    | Overlaps
+    | IndependentOf
+    | None
+    | Presupposes
+    | Implicates
   deriving (Eq, Ord, Show, Read)
 

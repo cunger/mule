@@ -85,8 +85,30 @@ instance Print Ident where
 
 instance Print Expression where
   prt i e = case e of
+    Wildcard -> prPrec i 0 (concatD [doc (showString "*")])
+    Slot n -> prPrec i 0 (concatD [doc (showString "$"), prt 0 n])
     Constant id -> prPrec i 0 (concatD [prt 0 id])
     List expressions -> prPrec i 0 (concatD [doc (showString "("), prt 0 expressions, doc (showString ")")])
+    Change relation -> prPrec i 0 (concatD [prt 0 relation])
   prtList _ [x] = (concatD [prt 0 x])
   prtList _ (x:xs) = (concatD [prt 0 x, prt 0 xs])
+instance Print Edit where
+  prt i e = case e of
+    Sub expression1 relation expression2 -> prPrec i 0 (concatD [prt 0 expression1, prt 0 relation, prt 0 expression2])
+    Del expression -> prPrec i 0 (concatD [doc (showString "del"), doc (showString ":"), prt 0 expression])
+    Ins expression -> prPrec i 0 (concatD [doc (showString "ins"), doc (showString ":"), prt 0 expression])
+
+instance Print Relation where
+  prt i e = case e of
+    Equivalent -> prPrec i 0 (concatD [doc (showString "=")])
+    Entails -> prPrec i 0 (concatD [doc (showString "->")])
+    IsEntailedBy -> prPrec i 0 (concatD [doc (showString "<-")])
+    Excludes -> prPrec i 0 (concatD [doc (showString "^")])
+    DisjointWith -> prPrec i 0 (concatD [doc (showString "|")])
+    Overlaps -> prPrec i 0 (concatD [doc (showString "~")])
+    IndependentOf -> prPrec i 0 (concatD [doc (showString "#")])
+    None -> prPrec i 0 (concatD [doc (showString "None")])
+    Presupposes -> prPrec i 0 (concatD [doc (showString "<<")])
+    Implicates -> prPrec i 0 (concatD [doc (showString ">>")])
+
 

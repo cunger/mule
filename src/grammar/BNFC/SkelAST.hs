@@ -14,6 +14,26 @@ transIdent x = case x of
   Ident string -> failure x
 transExpression :: Expression -> Result
 transExpression x = case x of
+  Wildcard -> failure x
+  Slot integer -> failure x
   Constant ident -> failure x
   List expressions -> failure x
+  Change relation -> failure x
+transEdit :: Edit -> Result
+transEdit x = case x of
+  Sub expression1 relation expression2 -> failure x
+  Del expression -> failure x
+  Ins expression -> failure x
+transRelation :: Relation -> Result
+transRelation x = case x of
+  Equivalent -> failure x
+  Entails -> failure x
+  IsEntailedBy -> failure x
+  Excludes -> failure x
+  DisjointWith -> failure x
+  Overlaps -> failure x
+  IndependentOf -> failure x
+  None -> failure x
+  Presupposes -> failure x
+  Implicates -> failure x
 

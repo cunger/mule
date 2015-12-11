@@ -1,5 +1,25 @@
 
+Wildcard . Expression ::= "*" ;
+Slot     . Expression ::= "$" Integer ;
 Constant . Expression ::= Ident ;
 List     . Expression ::= "(" [Expression] ")" ;
+Change   . Expression ::= Relation ;
 
 separator nonempty Expression "" ;
+
+
+Sub . Edit ::= Expression Relation Expression ;
+Del . Edit ::= "del" ":" Expression ;
+Ins . Edit ::= "ins" ":" Expression ;
+
+
+Equivalent    . Relation ::= "="  ;
+Entails       . Relation ::= "->" ;
+IsEntailedBy  . Relation ::= "<-" ;
+Excludes      . Relation ::= "^"  ;
+DisjointWith  . Relation ::= "|"  ;
+Overlaps      . Relation ::= "~"  ;
+IndependentOf . Relation ::= "#"  ;
+None          . Relation ::= "None" ;
+Presupposes   . Relation ::= "<<" ;
+Implicates    . Relation ::= ">>" ;

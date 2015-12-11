@@ -16,7 +16,6 @@ library
   hs-source-dirs:      src
                      , src/grammar/BNFC/
   exposed-modules:     Pipeline
-                     , InferenceEngine
                      , ErrM
                      , AbsAST
                      , LexAST
@@ -26,6 +25,7 @@ library
                      , gf
                      , haskeline
                      , array
+                     , containers
                      , MissingH
   default-language:    Haskell2010
 
