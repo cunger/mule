@@ -1,4 +1,4 @@
-module InferenceEngine (run) where
+module InferenceEngine (Inferences,run) where
 
 import Data.Maybe
 import Data.Map  (Map,(!))

@@ -8,30 +8,39 @@ import Data.List (nub)
 import PGF
 
 import ErrM
-import AbsAST
 import ParAST
 import PrintAST
+import AbsAST
+
+import InferenceEngine
 
 
-data Parse = Parse { language   :: Language
-                   , ast        :: Expression }
+data Interpretation = Interpretation { language   :: Language
+                                     , ast        :: Expression
+                                     , inferences :: Inferences }
 
 
 process :: PGF -> String -> [String]
 process pgf str = case parseAllLang pgf (startCat pgf) str of
-                       ((l,ts):_) -> map (\ t -> prettyPrint pgf $ mkParse l ("(" ++ showExpr [] t ++ ")")) ts
+                       ((l,ts):_) -> map (\ interpretation -> prettyPrint pgf interpretation)
+                                   $ map (\ t -> let e = ast2expr t
+                                                 in (Interpretation l e (InferenceEngine.run e))) ts
                        _          -> []
 
-mkParse :: Language -> String -> Parse
-mkParse l str = case pExpression $ myLexer $ str of
-                     Ok e -> Parse l e
-                     _    -> error $ "BNFC couldn't parse: " ++ str
 
-prettyPrint :: PGF -> Parse -> String
-prettyPrint pgf (Parse l ast) = let str = printTree ast
-                                in  str
-                             ++ "\n"
-                             ++ case readExpr str of
-                                     Just t  -> linearize pgf l t
-                                     Nothing -> error $ "PGF.readExpr failed for: " ++ str
-                             ++ "\n"
+prettyPrint :: PGF -> Interpretation -> String
+prettyPrint pgf (Interpretation l ast is) =
+        "\n" ++ printTree ast ++ "\n"
+        ++ foldl (++) "\n" (map (\ (e,r) -> "\n" ++ printTree r ++ " " ++ linearize pgf l (expr2ast e)) is)
+
+ast2expr :: Tree -> Expression
+ast2expr tree = let str = "(" ++ showExpr [] tree ++ ")"
+                in case pExpression $ myLexer $ str of
+                        Ok e -> e
+                        _    -> error $ "BNFC could not parse: " ++ str
+
+expr2ast :: Expression -> Tree
+expr2ast e = let str = printTree e
+             in case readExpr str of
+                  Just ast -> ast
+                  Nothing  -> error $ "PGF could not read: " ++ str
