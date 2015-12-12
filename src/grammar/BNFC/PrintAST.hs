@@ -94,9 +94,7 @@ instance Print Expression where
   prtList _ (x:xs) = (concatD [prt 0 x, prt 0 xs])
 instance Print Edit where
   prt i e = case e of
-    Sub expression1 relation expression2 -> prPrec i 0 (concatD [prt 0 expression1, prt 0 relation, prt 0 expression2])
-    Del expression -> prPrec i 0 (concatD [doc (showString "del"), doc (showString ":"), prt 0 expression])
-    Ins expression -> prPrec i 0 (concatD [doc (showString "ins"), doc (showString ":"), prt 0 expression])
+    Rewrite expression1 relation expression2 -> prPrec i 0 (concatD [prt 0 expression1, prt 0 relation, prt 0 expression2])
 
 instance Print Relation where
   prt i e = case e of

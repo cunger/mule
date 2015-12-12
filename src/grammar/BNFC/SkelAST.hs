@@ -21,9 +21,7 @@ transExpression x = case x of
   Change relation -> failure x
 transEdit :: Edit -> Result
 transEdit x = case x of
-  Sub expression1 relation expression2 -> failure x
-  Del expression -> failure x
-  Ins expression -> failure x
+  Rewrite expression1 relation expression2 -> failure x
 transRelation :: Relation -> Result
 transRelation x = case x of
   Equivalent -> failure x

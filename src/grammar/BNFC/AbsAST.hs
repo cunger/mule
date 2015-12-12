@@ -16,10 +16,7 @@ data Expression
     | Change Relation
   deriving (Eq, Ord, Show, Read)
 
-data Edit
-    = Sub Expression Relation Expression
-    | Del Expression
-    | Ins Expression
+data Edit = Rewrite Expression Relation Expression
   deriving (Eq, Ord, Show, Read)
 
 data Relation

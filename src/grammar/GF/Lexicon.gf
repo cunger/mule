@@ -1,1 +1,1 @@
-abstract Lexicon = Domain, Names; 
+abstract Lexicon = Domain, Names, ScopalVerbs; 

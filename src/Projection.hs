@@ -18,27 +18,70 @@ import qualified Data.Map as Map
 patterns :: [(String, Map Integer Expression -> Relation)]
 patterns = [ ("(PhrUtt * $1 *)",   \m -> project (m ! 1))
            , ("(UseCl * PPos $1)", \m -> project (m ! 1))
+          -- Negation
            , ("(UseCl * PNeg $1)", \m -> negation (project (m ! 1)))
-          -- quantifiers ($1 = vp, $2 = cn)
-          -- all
-           , ("(PredVP everybody_NP $1)",  \m -> every2 (project (m ! 1)))
-           , ("(PredVP everything_NP $1)", \m -> every2 (project (m ! 1)))
-           , ("(PredVP (DetCN every_Det $2) $1)", \m -> reljoin (every1 (project (m ! 1))) (every2 (project (m ! 2))))
-           , ("(PredVP (PredetNP all_Predet (DetCN (DetQuant IndefArt NumPl) $2)) $1)", \m -> reljoin (every1 (project (m ! 1))) (every2 (project (m ! 2))))
-          -- some
-          -- ...
-          -- no
-          -- ... 
+          -- Intersective modification
+           , ("(AdjCN * $1)",      \m -> intersect (project (m ! 1)))
+          -- Quantifiers
+           ]
+             ++ quantifier_patterns "every"
+             ++ quantifier_patterns "some"
+             ++ quantifier_patterns "no"
+             ++
+           [ ("(PredetNP not_Predet (DetCN every_Det $1) $2)", \m -> reljoin (negation (restr "every" (project (m ! 1))))
+                                                                             (negation (scope "every" (project (m ! 2)))))
+           , ("(PredetNP not_Predet (PredetNP all_Predet (DetCN (DetQuant IndefArt NumPl) $1)) $2)",
+                                                               \m -> reljoin (restr "every" (project (m ! 1)))
+                                                                             (restr "every" (project (m ! 2))))
+           , ("(ComplSlash $2 (PredetNP all_Predet (DetCN (DetQuant IndefArt NumPl) $1)))",
+                                                                \m -> reljoin (restr "every" (project (m ! 1)))
+                                                                              (restr "every" (project (m ! 2))))
+          -- TODO some verbs are not upward-monotone 
+          -- , ("(ComplSlash * $1)", \m -> ...)
           -- non-operator contexts (everything else)
            , ("(* $1)", \m -> project (m ! 1))
+           , ("(* $1 $2)", \m -> reljoin (project (m ! 1)) (project (m ! 2)))
            ]
 
+quantifier_patterns s = [
+          -- subject position
+            ("(PredVP "++s++"body_NP $2)",  \m -> scope s (project (m ! 2)))
+          , ("(PredVP "++s++"thing_NP $2)", \m -> scope s (project (m ! 2)))
+          , ("(PredVP (DetCN "++s++"_Det $1) $2)", \m -> reljoin (restr s (project (m ! 1))) (scope s (project (m ! 2))))
+          -- object position
+          , ("(ComplSlash $2 "++s++"body_NP)",  \m -> scope s (project (m ! 2)))
+          , ("(ComplSlash $2 "++s++"thing_NP)", \m -> scope s (project (m ! 2)))
+          , ("(ComplSlash $2 (DetCN "++s++"_Det $1))", \m -> reljoin (restr s (project (m ! 1))) (scope s (project (m ! 2))))
+          ]
 
 ---- Projection behavior of operators
 
 reljoin :: Relation -> Relation -> Relation
-reljoin Equivalent Equivalent = Equivalent
-reljoin r _ = r -- TODO
+reljoin Equivalent    r             = r
+reljoin r             Equivalent    = r
+reljoin Entails       Entails       = Entails
+reljoin Entails       Excludes      = DisjointWith
+reljoin Entails       DisjointWith  = DisjointWith
+reljoin IsEntailedBy  IsEntailedBy  = IsEntailedBy
+reljoin IsEntailedBy  Excludes      = Overlaps
+reljoin IsEntailedBy  Overlaps      = Overlaps
+reljoin Excludes      Entails       = Overlaps
+reljoin Excludes      IsEntailedBy  = DisjointWith
+reljoin Excludes      Excludes      = Equivalent
+reljoin Excludes      DisjointWith  = IsEntailedBy
+reljoin Excludes      Overlaps      = Entails
+reljoin Excludes      IndependentOf = IndependentOf
+reljoin DisjointWith  IsEntailedBy  = DisjointWith
+reljoin DisjointWith  Excludes      = Entails
+reljoin DisjointWith  Overlaps      = Entails
+reljoin Overlaps      Entails       = Overlaps
+reljoin Overlaps      Excludes      = IsEntailedBy
+reljoin Overlaps      DisjointWith  = IsEntailedBy
+reljoin IndependentOf Excludes      = IndependentOf
+-- the rest
+reljoin r None = r
+reljoin None r = r
+reljoin _ _    = None
 
 -- Negation
 
@@ -49,18 +92,35 @@ negation DisjointWith = Overlaps
 negation Overlaps     = DisjointWith
 negation relation     = relation
 
+-- Intersective modification
+
+intersect :: Relation -> Relation
+intersect Excludes = DisjointWith
+intersect Overlaps = IndependentOf
+intersect relation = relation
+
 -- Quantifiers
 
-every1 :: Relation -> Relation
-every1 Entails      = IsEntailedBy
-every1 IsEntailedBy = Entails
-every1 Excludes     = DisjointWith
-every1 DisjointWith = IndependentOf
-every1 relation     = relation
+restr :: String -> Relation -> Relation
+restr "every" Entails      = IsEntailedBy
+restr "every" IsEntailedBy = Entails
+restr "every" Excludes     = DisjointWith
+restr "every" DisjointWith = IndependentOf
+restr "every" Overlaps     = DisjointWith
+restr "every" relation     = relation
+restr "some"  Excludes     = Overlaps
+restr "some"  DisjointWith = IndependentOf
+restr "some"  relation     = relation
+restr "no"    relation     = negation (restr "some" relation)
 
-every2 :: Relation -> Relation
-every2 Excludes = DisjointWith
-every2 relation = relation
+scope :: String -> Relation -> Relation
+scope "every" Excludes     = DisjointWith
+scope "every" Overlaps     = IndependentOf
+scope "every" relation     = relation
+scope "some"  Excludes     = Overlaps
+scope "some"  DisjointWith = IndependentOf
+scope "some"  relation     = relation
+scope "no"    relation     = negation (scope "some" relation)
 
 -- Intersective modification
 

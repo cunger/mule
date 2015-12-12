@@ -8,10 +8,7 @@ Change   . Expression ::= Relation ;
 separator nonempty Expression "" ;
 
 
-Sub . Edit ::= Expression Relation Expression ;
-Del . Edit ::= "del" ":" Expression ;
-Ins . Edit ::= "ins" ":" Expression ;
-
+Rewrite . Edit ::= Expression Relation Expression ;
 
 Equivalent    . Relation ::= "="  ;
 Entails       . Relation ::= "->" ;

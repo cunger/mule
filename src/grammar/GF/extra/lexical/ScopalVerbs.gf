@@ -1,29 +1,19 @@
-abstract ScopalVerbs = Core ** {
+abstract ScopalVerbs = Cat ** {
 
     fun
 
-        ---- Implicatives
+        manage_to    : VV;
+        forget_to    : VV;
+        attempt_to   : VV;
 
-        manage_to    : Predicate_VP -> Predicate_VP;
-        forget_to    : Predicate_VP -> Predicate_VP;
-        attempt_to   : Predicate_VP -> Predicate_VP;
+        fail_to      : VV;
+        refuse_to    : VV;
+        hesitate_to  : VV;
 
-        fail_to      : Predicate_VP -> Predicate_VP;
-        refuse_to    : Predicate_VP -> Predicate_VP;
-        hesitate_to  : Predicate_VP -> Predicate_VP;
+    --  force_to : ... ;
 
-        force_to     : NounPhrase -> Predicate_VP -> Predicate_VP;
-
-
-        ---- Factives
-
-        forget_that  : Sentence -> Predicate_VP;
-        pretend_that : Sentence -> Predicate_VP;
-        know_that    : Sentence -> Predicate_VP;
-
-
-        ---- Modals
-
-        -- can, must, want : ...
+        forget_that  : VS;
+        pretend_that : VS;
+        know_that    : VS;
 
 }

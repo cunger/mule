@@ -17,9 +17,12 @@ abstract Domain = Cat ** {
 
         win_V : V;
         lose_V : V;
+        win_V2 : V2;
+        lose_V2 : V2;
+        win_against_V2 : V2;
+        lose_against_V2 : V2;
         play_V : V;
-        participate_V : V;
-
-        against_Prep : Prep;
+        play_against_V2 : V2;
+        participate_in_V2 : V2;
 
 }

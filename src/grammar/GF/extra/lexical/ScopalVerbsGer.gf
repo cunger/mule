@@ -1,24 +1,24 @@
-concrete ScopalVerbsGer of ScopalVerbs = CoreGer ** open SyntaxGer, ParadigmsGer in {
+concrete ScopalVerbsGer of ScopalVerb= CoreGer ** open SyntaxGer, ParadigmsGer in {
 
 
     lin
 
         -- Implicatives
 
-        manage_to    vp = mkVP (mkVV (mkV "schaffen")) vp;
-        forget_to    vp = mkVP (mkVV (mkV "vergessen" "vergisst" "vergaß" "vergäße" "vergessen")) vp;
-        attempt_to   vp = mkVP (mkVV (mkV "versuchen")) vp;
+        manage_to    = mkVV (mkV "schaffen");
+        forget_to    = mkVV (mkV "vergessen" "vergisst" "vergaß" "vergäße" "vergessen");
+        attempt_to   = mkVV (mkV "versuchen");
 
-        fail_to      vp = mkVP (mkVV (mkV "versagen")) vp;
-        refuse_to    vp = mkVP (mkVV (reflV (mkV "weigern") accusative)) vp;
-        hesitate_to  vp = mkVP (mkVV (mkV "zögern")) vp;
+        fail_to      = mkVV (mkV "versagen");
+        refuse_to    = mkVV (reflV (mkV "weigern") accusative);
+        hesitate_to  = mkVV (mkV "zögern");
 
-        force_to  np vp = mkVP (mkV2V (mkV "zwingen" "zwingt" "zwang" "zwinge" "gezwungen") accPrep) np vp;
+    --  force_to  np = mkV2V (mkV "zwingen" "zwingt" "zwang" "zwinge" "gezwungen") accPrep) np vp;
 
         -- Factives
 
-        know_that    s = mkVP (mkVS (mkV "wissen" "weiß" "wusste" "wisse" "gewusst")) s;
-        forget_that  s = mkVP (mkVS (mkV "vergessen" "vergisst" "vergaß" "vergäße" "vergessen")) s;
-        pretend_that s = mkVP (mkVS (mkV "vor" (mkV "geben" "gibt" "gab" "gäbe" "gegeben"))) s; -- TODO so tun als ob
+        know_that    = mkVS (mkV "wissen" "weiß" "wusste" "wisse" "gewusst");
+        forget_that  = mkVS (mkV "vergessen" "vergisst" "vergaß" "vergäße" "vergessen");
+        pretend_that = mkVS (mkV "vor" (mkV "geben" "gibt" "gab" "gäbe" "gegeben")); -- TODO so tun alob
 
 }

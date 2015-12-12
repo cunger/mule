@@ -16,10 +16,13 @@ concrete DomainEng of Domain = CatEng ** open ParadigmsEng in {
         European_A = mkA "European";
 
         win_V = mkV "win" "won" "won";
-        lose_V = mkV "lose";
+        lose_V = mkV "lose" "lost" "lost";
+        win_V2 = mkV2 (mkV "win" "won" "won");
+        lose_V2 = mkV2 (mkV "lose" "lost" "lost");
+        win_against_V2 = mkV2 (mkV "win" "won" "won") (mkPrep "against");
+        lose_against_V2 = mkV2 (mkV "lose" "lost" "lost") (mkPrep "against");
         play_V = mkV "play";
-        participate_V = mkV "participate";
-
-        against_Prep = mkPrep "against";
+        play_against_V2 = mkV2 (mkV "play") (mkPrep "against");
+        participate_in_V2 = mkV2 (mkV "participate") (mkPrep "in");
 
 }
